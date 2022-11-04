@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: calc(8px + 1.5vmin);
+  height: 100vh;
 }
 
 .App-logo {
@@ -35,4 +42,48 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.login-button {
+  display: flex;
+  justify-content: center;
+  /* size: calc(10cm + 1vmin); */
+  font-size: calc(10px + 1vmin);
+}
+
+/* const bgk_link = "https://i.pinimg.com/originals/f9/6f/8c/f96f8ccc974a177d0b2385ab0722908e.jpg" */
+.login-form {
+  /* background-color: white; */
+  background-image: 'url(${https://i.pinimg.com/originals/f9/6f/8c/f96f8ccc974a177d0b2385ab0722908e.jpg})';
+  background-size: "cover";
+  padding: 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-container {
+  display: flex;
+}
+
+.error {
+  color: red;
+  font-size: calc(10px + 2vmin);
+}
+
+.input-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 12px;
+}
+
+input[type="text"],input[type="password"] {
+  height: 25px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.log_title {
+  font-weight:600;
+  font-size: calc(10px + 3vmin);
+  color: #008000;
 }
