@@ -44,46 +44,131 @@
   }
 }
 
-.login-button {
-  display: flex;
-  justify-content: center;
-  /* size: calc(10cm + 1vmin); */
-  font-size: calc(10px + 1vmin);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600|Work+Sans:400,500,600,700&display=swap');
+
+body{
+  background: rgb(34,193,195);
+  background: linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+  font-family: "work sans";
 }
 
-/* const bgk_link = "https://i.pinimg.com/originals/f9/6f/8c/f96f8ccc974a177d0b2385ab0722908e.jpg" */
-.login-form {
-  /* background-color: white; */
-  background-image: 'url(${https://i.pinimg.com/originals/f9/6f/8c/f96f8ccc974a177d0b2385ab0722908e.jpg})';
-  background-size: "cover";
-  padding: 2rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+html{
+  font-size: 100%;
 }
 
-.list-container {
-  display: flex;
+#loginform{
+  max-width: 800px;
+  min-width: 300px;
+  max-height: 700px;
+  width: 80%;
+  height: 80%;
+  margin: 100px auto;
+  background-color: #FFFFFF;
+  border-radius: 25px;
 }
 
-.error {
-  color: red;
-  font-size: calc(10px + 2vmin);
+#headerTitle{
+  text-align: center;
+  font-family: 'open sans', sans-serif;
+  padding: 2rem 0;
+  margin: 0;
+  font-size: 2rem;
 }
 
-.input-container {
-  justify-content: center;
+.row{
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin: 12px;
+  align-items: center;
+  padding-top: 2rem;
+  max-width: 100%;
+  
 }
 
-input[type="text"],input[type="password"] {
-  height: 25px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
+.row input{
+  width: 80%;
+  box-sizing: border-box;
+	border: none;
+  font-size: 1.3rem;
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+  box-shadow: inset 0px -3px 0px 0px rgba(187,187,187,0.2);
+  transition: box-shadow 0.2s ease-in;
 }
 
-.log_title {
-  font-weight:600;
-  font-size: calc(10px + 3vmin);
-  color: #008000;
+.row input:focus{
+   box-shadow: inset 0px -3px 0px 0px rgba(34,193,195,0.7);
+   outline: none;
 }
+
+.row input::-webkit-input-placeholder{
+  opacity: 1;
+  transition: opacity 0.25s ease-out;
+}
+
+.row input:hover::-webkit-input-placeholder,
+.row input:focus::-webkit-input-placeholder{
+  opacity: 0;
+}
+
+.row label{
+  align-self: start;
+  padding-left: 4.5rem;
+  padding-bottom: 0.5rem;
+  color: rgba(187,187,187,0.9);
+}
+
+.row button{
+  border-radius: 25px;
+  width: 80%;
+  height: 40px;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 700;
+  background: rgb(34,193,195);
+  background: linear-gradient(90deg, rgba(34,193,195,1) 0%,     rgba(253,187,45,1) 100%);
+  border: 0px;
+  cursor: pointer;
+  transition: opacity 0.25s ease-out;
+}
+
+.row button:hover{
+  opacity: 0.8;
+}
+
+#button{
+  padding-bottom: 1.5rem;
+}
+
+#facebookIcon{
+  background-image:  url("./Images/facebook.png");
+  background-repeat: no-repeat;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+}
+
+#googleIcon{
+  background-image: url("./Images/google.png");
+  background-repeat: no-repeat;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+}
+
+#iconGroup{
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+#iconGroup a{
+  margin: 0 0.6rem;
+}
+
+#alternativeLogin {
+   text-align: center;
+   padding-top: 2rem;
+   margin-top: 1.5rem;
+}
+
+
