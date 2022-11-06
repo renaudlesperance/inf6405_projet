@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes,Route,Link} from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./components/home/Home.js"
 import GreenHouseMap from "./components/greenhousemap/GreenHouseMap.js"
 import Dashboard from "./components/dashboard/Dashboard.js"
