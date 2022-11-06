@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 
 
-// Base on user login form from https://github.com/elinsoftware/portal-login-react/tree/master/src 
+// Base on user login form from https://github.com/elinsoftware/portal-login-react/tree/master/src
 
 import './Home.css';
 
@@ -21,35 +21,31 @@ function LoginForm() {
     ];
 
     const navigate = useNavigate()
-    
+
     const [showPass, setShowPass] = useState(false);
     const [showUser, setShowUser] = useState(false);
 
     const AlertDismissible = () => {
         if (showPass) {
           return (
-            <div className="alert" id="button">            
-            <Alert>
-              {"Mot de passe incorrect "}
-              <button onClick={() => setShowPass(false)}> x </button>
+            <Alert variant="danger"  dismissible onClose={() => setShowPass(false)}>
+              <span>Le mot de passe saisit est incorrect</span>
             </Alert>
-            </div>
           );
         }
         else if (showUser){
           return(
-            <div className="alert" id="button">            
-            <Alert>
-              {"Nom d'utilisateur introuvable "}
-              <button onClick={() => setShowUser(false)}> x </button>
+            <Alert variant="danger"  dismissible onClose={() => setShowUser(false)}>
+              <span>Le nom d'utilisateur est incorrect</span>
             </Alert>
-            </div>
           );
         }
       }
 
     const onSubmit = (evt) => {
       evt.preventDefault()
+      setShowPass(false)
+      setShowUser(false)
       var nameValue = document.getElementById("name").value;
       var passValue = document.getElementById("pass").value;
 
@@ -111,7 +107,7 @@ const FormInput = ({ id, type, placeholder, description }) => (
 );
 
 const OtherMethods = () => (
-  <div id="alternativeLogin">
+  <div>
     <label>Or sign in with:</label>
     <div id="iconGroup">
       <Facebook />
@@ -130,7 +126,7 @@ const Google = () => (
 
 function Home() {
   return (
-  <div>  
+  <div>
   <LoginForm />
   </div>
 

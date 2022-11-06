@@ -8,7 +8,7 @@
     background-color: #FFFFFF;
     border-radius: 25px;
   }
-  
+
   #headerTitle{
     text-align: center;
     font-family: 'open sans', sans-serif;
@@ -16,16 +16,16 @@
     margin: 0;
     font-size: 2rem;
   }
-  
+
   .row{
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 2rem;
     max-width: 100%;
-    
+
   }
-  
+
   .row input{
     width: 80%;
     box-sizing: border-box;
@@ -36,29 +36,29 @@
     box-shadow: inset 0px -3px 0px 0px rgba(187,187,187,0.2);
     transition: box-shadow 0.2s ease-in;
   }
-  
+
   .row input:focus{
      box-shadow: inset 0px -3px 0px 0px rgba(34,193,195,0.7);
      outline: none;
   }
-  
+
   .row input::-webkit-input-placeholder{
     opacity: 1;
     transition: opacity 0.25s ease-out;
   }
-  
+
   .row input:hover::-webkit-input-placeholder,
   .row input:focus::-webkit-input-placeholder{
     opacity: 0;
   }
-  
+
   .row label{
     align-self: start;
     padding-left: 4.5rem;
     padding-bottom: 0.5rem;
     color: rgba(187,187,187,0.9);
   }
-  
+
   .row button{
     border-radius: 25px;
     width: 80%;
@@ -72,15 +72,15 @@
     cursor: pointer;
     transition: opacity 0.25s ease-out;
   }
-  
+
   .row button:hover{
     opacity: 0.8;
   }
-  
+
   #button{
     padding-bottom: 1.5rem;
   }
-  
+
   #facebookIcon{
     background-image:  url("../../Images/facebook.png");
     background-repeat: no-repeat;
@@ -88,7 +88,7 @@
     width: 4rem;
     height: 4rem;
   }
-  
+
   #googleIcon{
     background-image: url("../../Images/google.png");
     background-repeat: no-repeat;
@@ -96,27 +96,18 @@
     width: 4rem;
     height: 4rem;
   }
-  
+
   #iconGroup{
     display: flex;
     justify-content: center;
     padding: 2rem 0;
   }
-  
+
   #iconGroup a{
     margin: 0 0.6rem;
   }
-  
-  #alternativeLogin {
-     text-align: center;
-     padding-top: 2rem;
-     margin-top: 1.5rem;
-  }
 
-  .alert {
-    color: red;
-  }
-
-  .alert_btn {
-    color: red;
-  }
+.alert-danger {
+  margin-bottom: 0 !important;
+  margin: 0 16px;
+}
