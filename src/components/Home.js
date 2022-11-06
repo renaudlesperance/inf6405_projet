@@ -17,16 +17,25 @@ import { StepForwardOutlined } from '@ant-design/icons';
 import ReactDOM, { version } from 'react-dom'
 
 
-class LoginForm extends React.Component{
-  render(){
-    return(
-      <div id="loginform">
+function LoginForm() {
+    const navigate = useNavigate()
+
+    const onSubmit = (evt) => {
+      evt.preventDefault()
+      var nameValue = document.getElementById("name").value;
+      var passValue = document.getElementById("pass").value;
+
+      navigate('/GreenHouseMap')
+    }
+
+
+    return (
+      <form id="loginform" onSubmit={onSubmit}>
         <FormHeader title="Bienvenue sur Smart Green House" />
         <Form />
         <OtherMethods />
-      </div>
-    )
-  }
+      </form>
+    );
 }
 
 const FormHeader = props => (
@@ -36,8 +45,8 @@ const FormHeader = props => (
 
 const Form = props => (
    <div>
-     <FormInput description="Nom d'utilisateur" placeholder="Entrez votre nom d'utilisateur" type="text" />
-     <FormInput description="Mot de passe" placeholder="Entrez votre mot de passe" type="password"/>
+     <FormInput description="Nom d'utilisateur" placeholder="Entrez votre nom d'utilisateur" type="text" id='name' />
+     <FormInput description="Mot de passe" placeholder="Entrez votre mot de passe" type="password" id='pass' />
      <FormButton title="Se connecter"/>
    </div>
 );
@@ -46,21 +55,23 @@ const Form = props => (
 // // const Login_click = () => {<Navigate  to="/GreenHouseMap"> </Navigate >}
 // // const Login_click = () => {tets}
 
-const FormButton = props => (
-  <div id="button" class="row">
-    <button onClick={<Navigate  to="/GreenHouseMap" />}>
-      {props.title}</button>
+const FormButton = props => {
+  return (
+    <div id="button" className="row">
+      <button type='submit'>
+        {props.title}</button>
+    </div>
+  )
+};
+
+const FormInput = ({ id, type, placeholder, description }) => (
+  <div className="row">
+    <label>{description}</label>
+    <input id={id} type={type} placeholder={placeholder}/>
   </div>
 );
 
-const FormInput = props => (
-  <div class="row">
-    <label>{props.description}</label>
-    <input type={props.type} placeholder={props.placeholder}/>
-  </div>  
-);
-
-const OtherMethods = props => (
+const OtherMethods = () => (
   <div id="alternativeLogin">
     <label>Or sign in with:</label>
     <div id="iconGroup">
@@ -70,22 +81,19 @@ const OtherMethods = props => (
   </div>
 );
 
-const Facebook = props => (
+const Facebook = () => (
   <a href="#" id="facebookIcon"></a>
 );
 
-const Google = props => (
+const Google = () => (
   <a href="#" id="googleIcon"></a>
 );
 
 
 function Home() {
-  const navigate = useNavigate();
   return (
     <div className="app">
-      <button onClick={() => navigate("/GreenHouseMap")}>Se connecter</button>
       <LoginForm />
-      
     </div>
   );
 }
@@ -168,7 +176,7 @@ export default Home;
 //   return (
 //     <div className="app">
 //       <div className="login-form">
-//         <div 
+//         <div
 //         className="log_title">Bienvenue sur Smart Green House</div>
 //         {isSubmitted ? <div>L'utilisateur est connecté avec succès
 //         <Navigate  to="/GreenHouseMap"> </Navigate >

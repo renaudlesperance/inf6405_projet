@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Routes,Route,Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import Home from "./components/Home.js"
 import Login_page from "./components/Home.js"
-import GreenHouseMap from "./components/greenHouseMap.js"
-import Dashboard from "./components/dashboard.js"
-import Cameras from "./components/cameras.js"
-import Sensors from "./components/sensors.js"
-import Topology from "./components/topology.js"
+import GreenHouseMap from "./components/GreenHouseMap.js"
+import Dashboard from "./components/Dashboard.js"
+import Cameras from "./components/Cameras.js"
+import Sensors from "./components/Sensors.js"
+import Topology from "./components/Topology.js"
 
 const NoMatch = () => {return <div>Page not found</div>;};
 
