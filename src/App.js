@@ -2,13 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes,Route,Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import Home from "./components/Home.js"
-import Login_page from "./components/Home.js"
-import GreenHouseMap from "./components/GreenHouseMap.js"
-import Dashboard from "./components/Dashboard.js"
-import Cameras from "./components/Cameras.js"
-import Sensors from "./components/Sensors.js"
-import Topology from "./components/Topology.js"
+import Home from "./components/home/Home.js"
+import GreenHouseMap from "./components/greenhousemap/GreenHouseMap.js"
+import Dashboard from "./components/dashboard/Dashboard.js"
+import Cameras from "./components/cameras/Cameras.js"
+import Sensors from "./components/sensors/Sensors.js"
+import Topology from "./components/topology/Topology.js"
 
 const NoMatch = () => {return <div>Page not found</div>;};
 

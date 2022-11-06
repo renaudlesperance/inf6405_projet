@@ -1,21 +1,11 @@
-// import { Link } from "react-router-dom";
 // import React, { useState } from "react";
-// import ReactDOM from "react-dom";
 import {Navigate,useNavigate,Redirect} from 'react-router-dom'
 
-// import "../App.css";
 
-// User login form https://github.com/elinsoftware/portal-login-react/tree/master/src with small modification
+// Base on user login form from https://github.com/elinsoftware/portal-login-react/tree/master/src 
 
-
-import React, { Component } from 'react';
-import '../App.css';
-import axios from "axios";
-// import { Form, Input, Button, Checkbox, message } from "antd";
-import loginImg from '../Images/login.png'
-import { StepForwardOutlined } from '@ant-design/icons';
-import ReactDOM, { version } from 'react-dom'
-
+import React from 'react';
+import './Home.css';
 
 function LoginForm() {
     const navigate = useNavigate()
@@ -50,10 +40,6 @@ const Form = props => (
      <FormButton title="Se connecter"/>
    </div>
 );
-
-// const Login_click = () =>{ useNavigate("/GreenHouseMap");}
-// // const Login_click = () => {<Navigate  to="/GreenHouseMap"> </Navigate >}
-// // const Login_click = () => {tets}
 
 const FormButton = props => {
   return (
