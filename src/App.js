@@ -8,6 +8,7 @@ import Dashboard from "./components/dashboard/Dashboard.js"
 import Cameras from "./components/cameras/Cameras.js"
 import Sensors from "./components/sensors/Sensors.js"
 import Topology from "./components/topology/Topology.js"
+import PageNotFound from "./components/pagenotfound/PageNotFound.js"
 
 const NoMatch = () => {return <div>Page not found</div>;};
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Cameras" element={<Cameras />} />
         <Route path="/Sensors" element={<Sensors />} />
         <Route path="/Topology" element={<Topology />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes></Router>
        {/* <p> test </p> */}
        {/* ReactDOM.render(<Login_page />, document.getElementById('container')); */}
