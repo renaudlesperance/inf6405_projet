@@ -1,6 +1,6 @@
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,useParams} from 'react-router-dom'
 import {Button,Card,Container, Row, Col } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { CSVReader } from 'react-papaparse'
 
 // !!!! https://plotly.com/javascript/time-series/
@@ -73,7 +73,7 @@ function StatCard () {
   return (
     // <div>tets</div>
     <Card>
-      <Card.Header as="h5">Featured</Card.Header>
+      <Card.Header as="h5">StatCard</Card.Header>
       <Card.Body>
         {/* <Plot data = {data} layout = {layout}/> */}
           <Plot
@@ -89,7 +89,7 @@ function StatCard () {
             ]}
             layout={ {width: 600, height: 300, title: 'A Fancy Plot'} }
           />
-        <Button variant="primary">Go somewhere</Button>
+        {/* <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
   );
@@ -97,18 +97,40 @@ function StatCard () {
 
 function CamerasCard () {
   return (
-    // <div>tets</div>
     <Card>
-      <Card.Header as="h5">Featured</Card.Header>
+      <Card.Header as="h5">CamerasCard</Card.Header>
       <Card.Body>
         contenus
-        <Button variant="primary">Go somewhere</Button>
+      </Card.Body>
+    </Card>
+  );
+};
+
+function SensorsCard () {
+  return (
+    <Card>
+      <Card.Header as="h5">SensorsCard</Card.Header>
+      <Card.Body>
+        contenus
+      </Card.Body>
+    </Card>
+  );
+};
+
+function TopologyCard () {
+  return (
+    <Card>
+      <Card.Header as="h5">TopologyCard</Card.Header>
+      <Card.Body>
+        contenus
       </Card.Body>
     </Card>
   );
 };
 
 function Dashboard() {
+  const {id} = useParams()
+  console.log(id)
   const navigate = useNavigate()
   return (
     <div>
@@ -119,8 +141,8 @@ function Dashboard() {
         </Row>
         <Row>
           <Col> <CamerasCard/> </Col>
-          <Col> <CamerasCard/> </Col>
-          <Col> <CamerasCard/> </Col>
+          <Col> <SensorsCard/> </Col>
+          <Col> <TopologyCard/> </Col>
         </Row>
       </Container>
     </div>

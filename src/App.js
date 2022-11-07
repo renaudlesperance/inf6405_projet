@@ -20,7 +20,7 @@ function App() {
       <Router> <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/GreenHouseMap" element={<GreenHouseMap />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Dashboard/:id" element={<Dashboard />}/>
         <Route path="/Cameras" element={<Cameras />} />
         <Route path="/Sensors" element={<Sensors />} />
         <Route path="/Topology" element={<Topology />} />

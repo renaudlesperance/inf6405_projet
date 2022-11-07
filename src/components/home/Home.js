@@ -5,7 +5,7 @@ import Alert from 'react-bootstrap/Alert';
 
 // Base on user login form from https://github.com/elinsoftware/portal-login-react/tree/master/src
 
-import './Home.css';
+// import './Home.css';
 
 function LoginForm() {
     // User Login info
