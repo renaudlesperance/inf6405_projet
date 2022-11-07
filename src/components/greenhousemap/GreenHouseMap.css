@@ -1,6 +1,7 @@
-.GreenHouseMapForm{
-    width: fit-content;
-    height: fit-content;
-    background-color: #FFFFFF;
-    border-radius: 25px;
-  }
+.buttonContainer {
+  margin-bottom: 16px;
+}
+
+.buttonContainer > button {
+  width: 100%;
+}
