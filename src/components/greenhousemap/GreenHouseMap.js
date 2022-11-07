@@ -23,7 +23,7 @@ const Map = ({ onClick }) => {
   return (
     <div style={{ height: '80vh', width: '100%', marginBottom: 16 }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "" }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
