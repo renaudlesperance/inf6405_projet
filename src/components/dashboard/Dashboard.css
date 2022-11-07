@@ -1,0 +1,18 @@
+.firstRow {
+  margin-bottom: 24px;
+}
+
+.titleDashboard {
+  text-align: center;
+}
+
+.titleDashboard h1 {
+  font-weight: 700;
+}
+
+.headerCardDashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

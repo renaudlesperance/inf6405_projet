@@ -1,95 +1,84 @@
 import {useNavigate,useParams} from 'react-router-dom'
-import {Button,Card,Container, Row, Col } from 'react-bootstrap'
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import { CSVReader } from 'react-papaparse'
+import {Card,Container, Row, Col, ButtonGroup, Button } from 'react-bootstrap'
 
-// !!!! https://plotly.com/javascript/time-series/
-
-// import Plotly from "plotly.js"
-import React from 'react';
-import Plot from 'react-plotly.js';
-import * as d3 from "d3"
-
-// d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows) => {console.log}
-
-// function unpack(rows, key) {
-//   return rows.map(function(row) { return row[key]; });
-// }
-
-// var trace1 = {
-//   type: "scatter",
-//   mode: "lines",
-//   name: 'AAPL High',
-//   x: unpack(rows, 'Date'),
-//   y: unpack(rows, 'AAPL.High'),
-//   line: {color: '#17BECF'}
-// }
-
-// var trace2 = {
-//   type: "scatter",
-//   mode: "lines",
-//   name: 'AAPL Low',
-//   x: unpack(rows, 'Date'),
-//   y: unpack(rows, 'AAPL.Low'),
-//   line: {color: '#7F7F7F'}
-// }
-
-// var data = [trace1,trace2];
-
-// var layout = {
-//   title: 'Time Series with Rangeslider',
-//   xaxis: {
-//     autorange: true,
-//     range: ['2015-02-17', '2017-02-16'],
-//     rangeselector: {buttons: [
-//         {
-//           count: 1,
-//           label: '1m',
-//           step: 'month',
-//           stepmode: 'backward'
-//         },
-//         {
-//           count: 6,
-//           label: '6m',
-//           step: 'month',
-//           stepmode: 'backward'
-//         },
-//         {step: 'all'}
-//       ]},
-//     rangeslider: {range: ['2015-02-17', '2017-02-16']},
-//     type: 'date'
-//   },
-//   yaxis: {
-//     autorange: true,
-//     range: [86.8700008333, 138.870004167],
-//     type: 'linear'
-//   }
-// };
+import React, { useState } from 'react';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import './Dashboard.css';
 
 
-      // Plotly.newPlot('myDiv', data, layout);
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {},
+    title: {
+      display: true,
+      text: 'Chart.js Line Chart',
+    },
+  },
+};
+
+const labels = ['Lundi 12:00', 'Lundi 24:00', 'Lundi 12:00', 'Lundi 24:00','Lundi 12:00', 'Lundi 24:00','Lundi 12:00', 'Lundi 24:00','Lundi 12:00', 'Lundi 24:00','Lundi 12:00', 'Lundi 24:00','Lundi 12:00', 'Lundi 24:00',];
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: [1, 2, 3, 1, 2, 3, 1],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+  ],
+};
+
 
 function StatCard () {
+  const [active, setActive] = useState(1)
+
   return (
-    // <div>tets</div>
     <Card>
-      <Card.Header as="h5">StatCard</Card.Header>
+      <Card.Header as="h5">
+        <div className='headerCardDashboard'>
+          <span>StatCard</span>
+          <ButtonGroup id='buttonGroupDashboard'>
+            <Button variant="outline-secondary" onClick={() => setActive(1)} active={active === 1} >Temps réel</Button>
+            <Button variant="outline-secondary" onClick={() => setActive(2)} active={active === 2}>Jour</Button>
+            <Button variant="outline-secondary" onClick={() => setActive(3)} active={active === 3}>Semaine</Button>
+          </ButtonGroup>
+        </div>
+      </Card.Header>
       <Card.Body>
-        {/* <Plot data = {data} layout = {layout}/> */}
-          <Plot
-            data={[
-              {
-                x: [1, 2, 3],
-                y: [2, 6, 3],
-                type: 'scatter',
-                mode: 'lines+markers',
-                marker: {color: 'red'},
-              },
-              {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]},
-            ]}
-            layout={ {width: 600, height: 300, title: 'A Fancy Plot'} }
-          />
-        {/* <Button variant="primary">Go somewhere</Button> */}
+        <Row>
+          <Col>
+            <Line options={options} data={data} />
+          </Col>
+          <Col>
+            <Line options={options} data={data} />
+          </Col>
+          <Col>
+            <Line options={options} data={data} />
+          </Col>
+        </Row>
       </Card.Body>
     </Card>
   );
@@ -130,15 +119,18 @@ function TopologyCard () {
 
 function Dashboard() {
   const {id} = useParams()
-  console.log(id)
   const navigate = useNavigate()
+
   return (
     <div>
       <button onClick={() => navigate('/GreenHouseMap')}> back </button>
       <Container>
-        <Row>
-          <Col> <StatCard/> </Col>
-        </Row>
+        <div className='titleDashboard'><h1>Serre n°{id}</h1></div>
+        <div className='firstRow'>
+          <Row>
+            <Col> <StatCard/> </Col>
+          </Row>
+        </div>
         <Row>
           <Col> <CamerasCard/> </Col>
           <Col> <SensorsCard/> </Col>
