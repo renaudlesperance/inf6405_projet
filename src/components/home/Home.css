@@ -111,3 +111,11 @@
   margin-bottom: 0 !important;
   margin: 0 16px;
 }
+
+.loginContainer {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

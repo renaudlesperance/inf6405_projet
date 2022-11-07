@@ -6,20 +6,21 @@ import {useNavigate} from 'react-router-dom'
 // import * as bs from 'bootstrap/dist/css/bootstrap.css';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import CustomContainer from '../customContainer/CustomContainer';
 
 function GreenHouseMapForm() {
   return (
-    <form id="GreenHouseMapForm">
+    <div id="GreenHouseMapForm">
       <div className="d-grid gap-2">
-      <Button size="lg" variant="secondary" active>Carte des serres</Button>
+        <Button size="lg" variant="secondary" active>Carte des serres</Button>
       </div>
       <FormMap Mapsize = "900x900" center = "45.66748438022475, -73.4901313020032"/>
-    </form>
+    </div>
   );
 }
 
 const FormMap = ({Mapsize,center,zoom}) => {
-  return (  
+  return (
   <div>
     <StaticGoogleMap size={Mapsize} scale = "1" className="img-fluid" apiKey="AIzaSyCABHoayGp9RedcFVhUWaI-RaZUzh99avA">
       <Marker location="45.66748438022475, -73.4901313020032" color="green" label="1" />
@@ -32,7 +33,7 @@ const FormMap = ({Mapsize,center,zoom}) => {
 </div>
 )
 }
- 
+
 // onClick={navigate('/Dashboard')
 const MapButton = () => {
   const navigate = useNavigate()
@@ -52,9 +53,9 @@ const MapButton = () => {
 
 function GreenHouseMap() {
   return (
-    <div className="GreenHouseMap">
+    <CustomContainer>
       <GreenHouseMapForm/>
-    </div>
+    </CustomContainer>
   );
 }
 

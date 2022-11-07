@@ -126,8 +126,8 @@ const Google = () => (
 
 function Home() {
   return (
-  <div>
-  <LoginForm />
+  <div className='loginContainer'>
+    <LoginForm />
   </div>
 
   );
