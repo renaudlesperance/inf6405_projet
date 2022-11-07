@@ -22,7 +22,7 @@ function GreenHouseMapForm() {
 const FormMap = ({Mapsize,center,zoom}) => {
   return (
   <div>
-    <StaticGoogleMap size={Mapsize} scale = "1" className="img-fluid" apiKey="AIzaSyCABHoayGp9RedcFVhUWaI-RaZUzh99avA">
+    <StaticGoogleMap size={Mapsize} scale = "1" className="img-fluid" apiKey="">
       <Marker location="45.66748438022475, -73.4901313020032" color="green" label="1" />
       <Marker location="45.445124638140015, -73.57955912606486" color="green" label="2" />
       <Marker location="45.59100471050687, -73.39481140981282" color="green" label="3" />
