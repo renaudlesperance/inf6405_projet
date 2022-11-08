@@ -45,7 +45,7 @@ const Map = () => {
 
 function GreenHouseMap() {
   return (
-    <CustomContainer>
+    <CustomContainer withMargin>
       <div className={styles.buttonContainer}>
         <Button size="lg" variant="secondary" active>Carte des serres</Button>
       </div>

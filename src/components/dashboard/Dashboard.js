@@ -1,5 +1,5 @@
 import {useNavigate,useParams} from 'react-router-dom'
-import {Card,Container, Row, Col, ButtonGroup, Button } from 'react-bootstrap'
+import {Card, Row, Col, ButtonGroup, Button } from 'react-bootstrap'
 
 import React, { useState } from 'react';
 import {
@@ -16,6 +16,7 @@ import { Line } from 'react-chartjs-2';
 import styles from './Dashboard.module.css';
 import BackButton from '../backButton/BackButton';
 import ClickableContainer from '../clickableContainer/ClickableContainer';
+import CustomContainer from '../customContainer/CustomContainer';
 
 
 ChartJS.register(
@@ -125,7 +126,7 @@ function Dashboard() {
   return (
     <div>
       <BackButton onClick={() => navigate('/GreenHouseMap')} />
-      <Container>
+      <CustomContainer>
         <div className={styles.titleDashboard}><h1>Serre n°{id}</h1></div>
         <div className={styles.firstRow}>
           <Row>
@@ -151,7 +152,7 @@ function Dashboard() {
             </ClickableContainer>
           </Col>
         </Row>
-      </Container>
+      </CustomContainer>
     </div>
   );
 }
