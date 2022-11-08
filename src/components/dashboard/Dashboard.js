@@ -14,6 +14,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import styles from './Dashboard.module.css';
+import BackButton from '../backButton/BackButton';
 
 
 ChartJS.register(
@@ -122,7 +123,7 @@ function Dashboard() {
 
   return (
     <div>
-      <button onClick={() => navigate('/GreenHouseMap')}> back </button>
+      <BackButton onClick={() => navigate('/GreenHouseMap')} />
       <Container>
         <div className={styles.titleDashboard}><h1>Serre n°{id}</h1></div>
         <div className={styles.firstRow}>
