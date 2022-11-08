@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import './CustomContainer.css';
+import styles from './CustomContainer.module.css'
 
 export default function CustomContainer({ children }) {
   return (
     <Container>
-      <div className='divContainer'>
+      <div className={styles.divContainer}>
         {children}
       </div>
     </Container>

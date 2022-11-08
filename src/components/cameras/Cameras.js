@@ -1,3 +1,6 @@
+import React from 'react';
+import styles from './Cameras.module.css'
+
 function Cameras() {
   return (
     <div className="Cameras">

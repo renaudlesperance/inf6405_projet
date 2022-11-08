@@ -1,3 +1,6 @@
+import React from 'react';
+import styles from './Topology.module.css';
+
 function Topology() {
   return (
     <div className="Topology">

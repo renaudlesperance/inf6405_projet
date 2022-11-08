@@ -13,8 +13,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import './Dashboard.css';
-
+import styles from './Dashboard.module.css';
 
 
 ChartJS.register(
@@ -58,9 +57,9 @@ function StatCard () {
   return (
     <Card>
       <Card.Header as="h5">
-        <div className='headerCardDashboard'>
+        <div className={styles.headerCardDashboard}>
           <span>StatCard</span>
-          <ButtonGroup id='buttonGroupDashboard'>
+          <ButtonGroup id={styles.buttonGroupDashboard}>
             <Button variant="outline-secondary" onClick={() => setActive(1)} active={active === 1} >Temps réel</Button>
             <Button variant="outline-secondary" onClick={() => setActive(2)} active={active === 2}>Jour</Button>
             <Button variant="outline-secondary" onClick={() => setActive(3)} active={active === 3}>Semaine</Button>
@@ -125,8 +124,8 @@ function Dashboard() {
     <div>
       <button onClick={() => navigate('/GreenHouseMap')}> back </button>
       <Container>
-        <div className='titleDashboard'><h1>Serre n°{id}</h1></div>
-        <div className='firstRow'>
+        <div className={styles.titleDashboard}><h1>Serre n°{id}</h1></div>
+        <div className={styles.firstRow}>
           <Row>
             <Col> <StatCard/> </Col>
           </Row>

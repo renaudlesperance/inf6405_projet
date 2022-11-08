@@ -1,9 +1,9 @@
 import React from 'react';
-import './Marker.css';
+import styles from './Marker.module.css';
 
 export default function Marker({ id, onClick }) {
 
   return (
-    <div className='pin' onClick={() => onClick(id)} />
+    <div className={styles.pin} onClick={() => onClick(id)} />
   );
 }

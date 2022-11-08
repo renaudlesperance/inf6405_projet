@@ -2,13 +2,11 @@
 // https://developers.google.com/maps/documentation/javascript/get-api-key
 
 import {useNavigate} from 'react-router-dom'
-// import * as bs from 'bootstrap/dist/css/bootstrap.css';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import CustomContainer from '../customContainer/CustomContainer';
 import GoogleMapReact from 'google-map-react';
 
-import './GreenHouseMap.css'
+import styles from './GreenHouseMap.module.css';
 import Marker from './Marker';
 
 const Map = () => {
@@ -48,7 +46,7 @@ const Map = () => {
 function GreenHouseMap() {
   return (
     <CustomContainer>
-      <div className='buttonContainer'>
+      <div className={styles.buttonContainer}>
         <Button size="lg" variant="secondary" active>Carte des serres</Button>
       </div>
       <Map />

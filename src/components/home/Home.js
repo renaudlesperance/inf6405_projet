@@ -1,11 +1,9 @@
 import {useNavigate} from 'react-router-dom'
 import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
+import styles from './Home.module.css'
 
-
-// Base on user login form from https://github.com/elinsoftware/portal-login-react/tree/master/src
-
-// import './Home.css';
+// Based on user login form from https://github.com/elinsoftware/portal-login-react/tree/master/src
 
 function LoginForm() {
     // User Login info
@@ -68,7 +66,7 @@ function LoginForm() {
 
 
     return (
-      <form id="loginform" onSubmit={onSubmit}>
+      <form id={styles.loginform} onSubmit={onSubmit}>
         <FormHeader title="Bienvenue sur Smart Green House" />
         <AlertDismissible />
         <Form />
@@ -78,7 +76,7 @@ function LoginForm() {
 }
 
 const FormHeader = ({ title }) => (
-    <h2 id="headerTitle">{title}</h2>
+    <h2 id={styles.headerTitle}>{title}</h2>
 );
 
 
@@ -92,7 +90,7 @@ const Form = () => (
 
 const FormButton = ({ title }) => {
   return (
-    <div id="button" className="row">
+    <div id={styles.button} className={styles.row}>
       <button type='submit'>
         {title}</button>
     </div>
@@ -100,7 +98,7 @@ const FormButton = ({ title }) => {
 };
 
 const FormInput = ({ id, type, placeholder, description }) => (
-  <div className="row">
+  <div className={styles.row}>
     <label>{description}</label>
     <input id={id} type={type} placeholder={placeholder}/>
   </div>
@@ -109,7 +107,7 @@ const FormInput = ({ id, type, placeholder, description }) => (
 const OtherMethods = () => (
   <div>
     <label>Or sign in with:</label>
-    <div id="iconGroup">
+    <div id={styles.iconGroup}>
       <Facebook />
       <Google />
     </div>
@@ -117,16 +115,16 @@ const OtherMethods = () => (
 );
 
 const Facebook = () => (
-  <a href="#" id="facebookIcon"></a>
+  <a href="#" id={styles.facebookIcon}></a>
 );
 
 const Google = () => (
-  <a href="#" id="googleIcon"></a>
+  <a href="#" id={styles.googleIcon}></a>
 );
 
 function Home() {
   return (
-  <div className='loginContainer'>
+  <div className={styles.loginContainer}>
     <LoginForm />
   </div>
 

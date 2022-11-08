@@ -1,3 +1,6 @@
+import React from 'react';
+import styles from './Sensors.module.css';
+
 function Sensors() {
   return (
     <div className="Sensors">
