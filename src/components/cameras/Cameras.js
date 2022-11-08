@@ -8,7 +8,6 @@ import { Row, Col } from 'react-bootstrap'
 function Cameras() {
   const { id } = useParams()
   const navigate = useNavigate()
-
   return (
     <div>
       <BackButton onClick={() => navigate(`/Dashboard/${id}`)} />
