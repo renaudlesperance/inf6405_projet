@@ -1,0 +1,6 @@
+.container:hover {
+  cursor: pointer;
+  /* opacity: 0.9; */
+  border: 2px solid black;
+  border-radius: 0.375rem;
+}

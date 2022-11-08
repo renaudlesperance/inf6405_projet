@@ -21,9 +21,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/GreenHouseMap" element={<GreenHouseMap />} />
         <Route path="/Dashboard/:id" element={<Dashboard />}/>
-        <Route path="/Cameras" element={<Cameras />} />
-        <Route path="/Sensors" element={<Sensors />} />
-        <Route path="/Topology" element={<Topology />} />
+        <Route path="/Cameras/:id" element={<Cameras />} />
+        <Route path="/Sensors/:id" element={<Sensors />} />
+        <Route path="/Topology/:id" element={<Topology />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes></Router>
        {/* <p> test </p> */}

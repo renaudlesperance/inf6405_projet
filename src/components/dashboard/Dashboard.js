@@ -15,6 +15,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import styles from './Dashboard.module.css';
 import BackButton from '../backButton/BackButton';
+import ClickableContainer from '../clickableContainer/ClickableContainer';
 
 
 ChartJS.register(
@@ -118,7 +119,7 @@ function TopologyCard () {
 };
 
 function Dashboard() {
-  const {id} = useParams()
+  const { id } = useParams()
   const navigate = useNavigate()
 
   return (
@@ -128,13 +129,27 @@ function Dashboard() {
         <div className={styles.titleDashboard}><h1>Serre n°{id}</h1></div>
         <div className={styles.firstRow}>
           <Row>
-            <Col> <StatCard/> </Col>
+            <Col>
+              <StatCard/>
+            </Col>
           </Row>
         </div>
         <Row>
-          <Col> <CamerasCard/> </Col>
-          <Col> <SensorsCard/> </Col>
-          <Col> <TopologyCard/> </Col>
+          <Col>
+            <ClickableContainer onClick={() => navigate(`/Cameras/${id}`)}>
+              <CamerasCard/>
+            </ClickableContainer>
+           </Col>
+          <Col>
+            <ClickableContainer onClick={() => navigate(`/Sensors/${id}`)}>
+              <SensorsCard/>
+            </ClickableContainer>
+          </Col>
+          <Col>
+            <ClickableContainer onClick={() => navigate(`/Topology/${id}`)}>
+              <TopologyCard/>
+            </ClickableContainer>
+          </Col>
         </Row>
       </Container>
     </div>
