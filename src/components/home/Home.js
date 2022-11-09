@@ -67,7 +67,7 @@ function LoginForm() {
 
     return (
       <form id={styles.loginform} onSubmit={onSubmit}>
-        <FormHeader title="Bienvenue sur Smart Green House" />
+        <FormHeader title="Bienvenue sur Smart Greenhouse" />
         <AlertDismissible />
         <Form />
         <OtherMethods />

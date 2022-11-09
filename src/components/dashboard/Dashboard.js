@@ -30,19 +30,9 @@ ChartJS.register(
   Legend
 );
 
-// const IntervalExample = () => {
-//   const [customParams, setcustomParams] = useState({min:0,d_max:3});
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setcustomParams ({min:customParams.min+1,max:customParams.max+1})
-//     }, 1000);
-//   }, []);
-// };
-
-const DrawLine = ({data_v,d_min,d_max,title,color,x_label,y_label}) => {
+const DrawLine = ({timestep,data_v,d_min,d_max,title,color,y_label}) => {
   const labels = Data.labels;
-
+  const timeUnits = ["Seconde","Heure","Jour"]
   const data = {
     labels,
     datasets: [
@@ -74,7 +64,7 @@ const DrawLine = ({data_v,d_min,d_max,title,color,x_label,y_label}) => {
           max: d_max,      
           title: {
             display: true,
-            text: x_label
+            text: "Temps [" + timeUnits[timestep-1] + "]"
           }
       },
       y: {
@@ -97,21 +87,33 @@ const DrawLine = ({data_v,d_min,d_max,title,color,x_label,y_label}) => {
   )
 }
 
-const dataW = Data.water_values;
-const dataT = Data.temp_values;
-const dataH = Data.hum_values;
+
+const SelectedTimeDrawLine = ({value_type,active,customParams}) => {
+  const dataT = Data.temp_values;
+  const dataH = Data.hum_values;
+  const dataW = Data.water_values;
+  const allData = [dataT,dataH,dataW,]
+  const allDataNameAndLabel = [["Temperature","Temperature [C]"],["Humidité","Humidité [g.m-3]"],["Consomation d'Eau","Eau [L]"]]
+  const colors = ["#ef4423","#628b3c","#010585"]
+  const minMax_intervalle = [[customParams.min,customParams.max],[0,24],[0,7]]
+
+  return (       
+    <DrawLine timestep = {active} data_v = {allData[value_type]} d_min = {minMax_intervalle[active-1][0]} d_max = {minMax_intervalle[active-1][1]}
+      title = {allDataNameAndLabel[value_type][0]} y_label = {allDataNameAndLabel[value_type][1]} color={colors[value_type]}/>
+      )
+}
 
 function StatCard () {
   const [active, setActive] = useState(1)
   const [customParams, setCustomParams] = useState({min:0,max:3});
-
+  console.log(active)
   useEffect(() => {
     var min = 0
-    var max = 10
+    var max = 3
     const interval = setInterval(() => {
-      setCustomParams ({min,max})
       min += 2
       max += 2
+      setCustomParams ({min,max})
       console.log({min,max})
     }, 2000);
     return () => clearInterval(interval);
@@ -132,13 +134,13 @@ function StatCard () {
       <Card.Body>
         <Row>
           <Col>
-            <DrawLine data_v = {dataT} d_min = {customParams.min} d_max = {customParams.max} title = "Temperature" x_label = "Time []" y_label = "Temperature [C]" color="#ef4423"/>
+            <SelectedTimeDrawLine value_type = {0} active = {active} customParams = {customParams}/>
           </Col>
           <Col>
-            <DrawLine data_v = {dataH} d_min = {customParams.min} d_max = {customParams.max} title = "Humidité" x_label = "Time []" y_label = "Humidité [g.m-3]" color="#628b3c"/>
+            <SelectedTimeDrawLine value_type = {1} active = {active} customParams = {customParams}/>
           </Col>
           <Col>
-            <DrawLine data_v = {dataW} d_min = {customParams.min} d_max = {customParams.max} title = "Consomation d'Eau" x_label = "Time []" y_label = "Eau [L]" color="#010585"/>
+            <SelectedTimeDrawLine value_type = {2} active = {active} customParams = {customParams}/>
           </Col>
         </Row>
       </Card.Body>
