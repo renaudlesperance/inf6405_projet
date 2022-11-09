@@ -47,7 +47,7 @@ const DrawLine = ({timestep,data_v,d_min,d_max,title,color,y_label}) => {
 
   const options_test = {
     maintainAspectRatio: true,
-    responsive: true,
+    responsive: false,
     plugins: {
       legend: {
         display: false
@@ -61,7 +61,7 @@ const DrawLine = ({timestep,data_v,d_min,d_max,title,color,y_label}) => {
       x: {
           type: 'linear',
           min: d_min,
-          max: d_max,      
+          max: d_max,
           title: {
             display: true,
             text: "Temps [" + timeUnits[timestep-1] + "]"
@@ -77,13 +77,13 @@ const DrawLine = ({timestep,data_v,d_min,d_max,title,color,y_label}) => {
     },
     elements: {
         point: {
-          radius: 0 
+          radius: 0
         },
     },
   }
 
   return (
-    <Line options={options_test} data={data} />
+      <Line options={options_test} data={data} height={202} width={404.5} />
   )
 }
 
@@ -97,7 +97,7 @@ const SelectedTimeDrawLine = ({value_type,active,customParams}) => {
   const colors = ["#ef4423","#628b3c","#010585"]
   const minMax_intervalle = [[customParams.min,customParams.max],[0,24],[0,7]]
 
-  return (       
+  return (
     <DrawLine timestep = {active} data_v = {allData[value_type]} d_min = {minMax_intervalle[active-1][0]} d_max = {minMax_intervalle[active-1][1]}
       title = {allDataNameAndLabel[value_type][0]} y_label = {allDataNameAndLabel[value_type][1]} color={colors[value_type]}/>
       )
