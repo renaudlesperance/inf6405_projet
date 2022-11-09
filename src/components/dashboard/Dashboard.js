@@ -31,108 +31,34 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {},
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-  scales: {
-    x: {
-        type: 'linear',
-        min: 2,
-        max: 9,      
-        title: {
-          display: true,
-          text: 'Your Title'
-        }
-    },
-    y: {
-        type: 'linear',
-        title: {
-          display: true,
-          text: Data.hum_values[2],
-        }
-    },
-  },
-  elements: {
-      point: {
-          radius: 0 // default to disabled in all datasets
-      },
-  },
-};
 
-const labels = Data.labels;
-export const dataTemp = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: Data.temp_values,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
+const DrawLine = ({data_v,title,color,x_label,y_label}) => {
+  const labels = Data.labels;
 
-export const dataHum = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: Data.hum_values,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
-
-export const dataWater = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: Data.water_values,
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
-
-// const chart = new ChartJS();
-// chart.options.title.text = 'new title';
-// chart.update();
-
-
-// export const lineChart = new ChartJS( {
-//   type: 'line',
-//   data: dataWater,
-//   options : options
-// });
-
-const drawLine = ({}) => {
   const data = {
     labels,
     datasets: [
       {
         label: 'Dataset 1',
-        data: Data.water_values,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        data: data_v,
+        // borderColor: 'rgb(255, 99, 132)',
+        // backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: color,
+        backgroundColor: color,
       },
     ],
   }
 
   const options_test = {
+    maintainAspectRatio: true,
     responsive: true,
     plugins: {
-      legend: {},
+      legend: {
+        display: false
+      },
       title: {
         display: true,
-        text: 'Chart.js Line Chart',
+        text: title,
       },
     },
     scales: {
@@ -142,30 +68,32 @@ const drawLine = ({}) => {
           max: 9,      
           title: {
             display: true,
-            text: 'Your Title'
+            text: x_label
           }
       },
       y: {
           type: 'linear',
           title: {
             display: true,
-            text: Data.hum_values[2],
+            text: y_label,
           }
       },
     },
     elements: {
         point: {
-            radius: 0 // default to disabled in all datasets
+          radius: 0 
         },
     },
   }
 
   return (
-    <div>
     <Line options={options_test} data={data} />
-    </div>
   )
 }
+
+const dataW = Data.water_values;
+const dataT = Data.temp_values;
+const dataH = Data.hum_values;
 
 function StatCard () {
   const [active, setActive] = useState(1)
@@ -185,15 +113,13 @@ function StatCard () {
       <Card.Body>
         <Row>
           <Col>
-          <Button onClick={() => drawLine}> test </Button>
-            <drawLine/>
-            {/* <Line options={options} data={dataTemp}/> */}
+            <DrawLine data_v = {dataT} title = "Temperature" x_label = "Time []" y_label = "Temperature [C]" color="#ef4423"/>
           </Col>
           <Col>
-            {/* <Line options={options} data={dataHum} /> */}
+            <DrawLine data_v = {dataH} title = "Humidité" x_label = "Time []" y_label = "Humidité [g.m-3]" color="#628b3c"/>
           </Col>
           <Col>
-            {/* <Line options={options} data={dataWater} /> */}
+            <DrawLine data_v = {dataW} title = "Consomation d'Eau" x_label = "Time []" y_label = "Eau [L]" color="#010585"/>
           </Col>
         </Row>
       </Card.Body>
