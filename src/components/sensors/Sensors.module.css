@@ -1,0 +1,45 @@
+.titleDashboard {
+  text-align: center;
+}
+
+.titleDashboard h1 {
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.sensorContainer {
+  border: 2px solid black;
+  border-radius: 0.375rem;
+}
+
+.sensorNotSelected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.cameraNotSelected > p {
+  font-size: 36px;
+}
+
+.headerSensor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.icon {
+  height: 30px;
+}
+
+.icon:hover {
+  cursor: pointer;
+  height: 32px;
+}
+
+.sensorInfoCol {
+  background-color: white;
+}

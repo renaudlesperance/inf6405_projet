@@ -6,9 +6,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import ListGroup from '../listGroup/CustomListGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import MyVerticallyCenteredModal from '../modal/Modal';
-import { Form, ToggleButtonGroup, ToggleButton } from 'react-bootstrap'
+import { Form, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
 function Cameras() {
   const { id } = useParams()
