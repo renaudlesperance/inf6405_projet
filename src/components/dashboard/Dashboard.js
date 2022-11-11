@@ -1,5 +1,5 @@
 import {useNavigate,useParams} from 'react-router-dom'
-import {Card, Row, Col, ButtonGroup, Button } from 'react-bootstrap'
+import {Card, Row, Col, ButtonGroup, Button ,ToggleButtonGroup,ToggleButton} from 'react-bootstrap'
 import Data from "../../data/data.json";
 
 import React, { useState,useEffect } from 'react';
@@ -83,39 +83,58 @@ const DrawLine = ({timestep,data_v,d_min,d_max,title,color,y_label}) => {
   }
 
   return (
-      <Line options={options_test} data={data} height={202} width={404.5} />
+      <Line options={options_test} data={data} height={275} width={404.5} />
   )
 }
 
-
-const SelectedTimeDrawLine = ({value_type,active,customParams}) => {
+const SelectedTimeDrawLine = ({value_type,timeInterval,customParams}) => {
   const dataT = Data.temp_values;
   const dataH = Data.hum_values;
   const dataW = Data.water_values;
-  const allData = [dataT,dataH,dataW,]
-  const allDataNameAndLabel = [["Temperature","Temperature [C]"],["Humidité","Humidité [g.m-3]"],["Consomation d'Eau","Eau [L]"]]
-  const colors = ["#ef4423","#628b3c","#010585"]
+  const dataPH = Data.pH_values;
+  const dataCO2 = Data.CO2_values;
+  const dataSun = Data.Sun_values;
+  const allData = [dataT,dataH,dataW,dataPH,dataCO2,dataSun]
+  const allDataNameAndLabel = [["Temperature","C"],["Humidité","g.m^3"],["Consomation d'Eau","L"],["pH de l'Eau","pH"],["Concentration CO2","ppm"],["Insolation","Wm^2"]]
+  const colors = ["#ef4423","#628b3c","#010585","#ee44cc","#b88600","#FF9B00"]
   const minMax_intervalle = [[customParams.min,customParams.max],[0,24],[0,7]]
 
   return (
-    <DrawLine timestep = {active} data_v = {allData[value_type]} d_min = {minMax_intervalle[active-1][0]} d_max = {minMax_intervalle[active-1][1]}
+    <DrawLine timestep = {timeInterval} data_v = {allData[value_type]} d_min = {minMax_intervalle[timeInterval-1][0]} d_max = {minMax_intervalle[timeInterval-1][1]}
       title = {allDataNameAndLabel[value_type][0]} y_label = {allDataNameAndLabel[value_type][1]} color={colors[value_type]}/>
       )
 }
 
+const ActiveStatDraw = ({activeGraphType,timeInterval,customParams}) => {
+  const toDisplay = [];
+  for (const activeGraph of activeGraphType) {
+    toDisplay.push(
+      <Col>
+        <SelectedTimeDrawLine value_type = {activeGraph-1} timeInterval = {timeInterval} customParams = {customParams}/>
+      </Col>
+      );
+  }
+  return <Row>{toDisplay}</Row>
+}
+
 function StatCard () {
-  const [active, setActive] = useState(1)
-  const [customParams, setCustomParams] = useState({min:0,max:3});
-  console.log(active)
+  const [timeInterval, setTimeInterval] = useState(1)
+  const [activeGraphType, setActiveGraphType] = useState([1,2,3])
+  const handleChange = (val) => setActiveGraphType(val);
+  const [customParams, setCustomParams] = useState({min:0,max:10});
+
+  console.log(timeInterval)
+  console.log(activeGraphType)
+
   useEffect(() => {
     var min = 0
-    var max = 3
+    var max = 10
     const interval = setInterval(() => {
       min += 2
       max += 2
       setCustomParams ({min,max})
       console.log({min,max})
-    }, 2000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -123,26 +142,24 @@ function StatCard () {
     <Card>
       <Card.Header as="h5">
         <div className={styles.headerCardDashboard}>
-          <span>StatCard</span>
+          <span>Statistiques</span>
+          <ToggleButtonGroup type="checkbox"  value={activeGraphType} onChange={handleChange}>
+            <ToggleButton id="tbg-btn-1" variant="outline-secondary" value={1}> Temperature </ToggleButton>
+            <ToggleButton id="tbg-btn-2" variant="outline-secondary" value={2}> Humidité </ToggleButton>
+            <ToggleButton id="tbg-btn-3" variant="outline-secondary" value={3}> Conso. Eau </ToggleButton>
+            <ToggleButton id="tbg-btn-4" variant="outline-secondary" value={4}> pH Eau </ToggleButton>
+            <ToggleButton id="tbg-btn-5" variant="outline-secondary" value={5}> CO2 </ToggleButton>
+            <ToggleButton id="tbg-btn-6" variant="outline-secondary" value={6}> Insolation </ToggleButton>
+          </ToggleButtonGroup>
           <ButtonGroup id={styles.buttonGroupDashboard}>
-            <Button variant="outline-secondary" onClick={() => setActive(1)} active={active === 1}>Temps réel</Button>
-            <Button variant="outline-secondary" onClick={() => setActive(2)} active={active === 2}>Jour</Button>
-            <Button variant="outline-secondary" onClick={() => setActive(3)} active={active === 3}>Semaine</Button>
+            <Button variant="outline-secondary" onClick={() => setTimeInterval(1)} timeInterval={timeInterval === 1}>Temps réel</Button>
+            <Button variant="outline-secondary" onClick={() => setTimeInterval(2)} timeInterval={timeInterval === 2}>Jour</Button>
+            <Button variant="outline-secondary" onClick={() => setTimeInterval(3)} timeInterval={timeInterval === 3}>Semaine</Button>
           </ButtonGroup>
         </div>
       </Card.Header>
       <Card.Body>
-        <Row>
-          <Col>
-            <SelectedTimeDrawLine value_type = {0} active = {active} customParams = {customParams}/>
-          </Col>
-          <Col>
-            <SelectedTimeDrawLine value_type = {1} active = {active} customParams = {customParams}/>
-          </Col>
-          <Col>
-            <SelectedTimeDrawLine value_type = {2} active = {active} customParams = {customParams}/>
-          </Col>
-        </Row>
+          <ActiveStatDraw activeGraphType = {activeGraphType} timeInterval = {timeInterval} customParams = {customParams}/>
       </Card.Body>
     </Card>
   );
@@ -151,7 +168,7 @@ function StatCard () {
 function CamerasCard () {
   return (
     <Card>
-      <Card.Header as="h5">CamerasCard</Card.Header>
+      <Card.Header as="h5">Caméras</Card.Header>
       <Card.Body>
         contenus
       </Card.Body>
@@ -162,7 +179,7 @@ function CamerasCard () {
 function SensorsCard () {
   return (
     <Card>
-      <Card.Header as="h5">SensorsCard</Card.Header>
+      <Card.Header as="h5">Capteurs</Card.Header>
       <Card.Body>
         contenus
       </Card.Body>
@@ -173,7 +190,7 @@ function SensorsCard () {
 function TopologyCard () {
   return (
     <Card>
-      <Card.Header as="h5">TopologyCard</Card.Header>
+      <Card.Header as="h5">Topologie</Card.Header>
       <Card.Body>
         contenus
       </Card.Body>
