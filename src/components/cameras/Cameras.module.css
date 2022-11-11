@@ -4,4 +4,37 @@
 
 .titleDashboard h1 {
   font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.cameraContainer {
+  border: 2px solid black;
+  border-radius: 0.375rem;
+}
+
+.cameraNotSelected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.cameraNotSelected > p {
+  font-size: 36px;
+}
+
+.headerCamera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+.cameraInfoCol {
+  background-color: white;
 }
