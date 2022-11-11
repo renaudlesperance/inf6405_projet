@@ -40,6 +40,7 @@ const DrawLine = ({timestep,data_x,data_y,d_min,d_max,title,color,y_label}) => {
         data: data_y,
         borderColor: color,
         backgroundColor: color,
+        borderWidth: 2,
       },
     ],
   }
@@ -96,7 +97,7 @@ const SelectedTimeDrawLine = ({value_type,timeIndx,customParams}) => {
   const dataSun = Data.Sun_values;
   const allData = [dataT,dataH,dataW,dataPH,dataCO2,dataSun]
 
-  const allDataNameAndLabel = [["Temperature","C"],["Humidité relative","%"],["Consomation d'Eau","L"],["pH de l'Eau","pH"],["Concentration CO2","ppm"],["Insolation","Wm^2"]]
+  const allDataNameAndLabel = [["Temperature","C"],["Humidité relative","%"],["Consomation d'Eau (cumulative)","L"],["pH de l'Eau","pH"],["Concentration CO2","ppm"],["Insolation","Wm^2"]]
   const colors = ["#ef4423","#628b3c","#010585","#ee44cc","#b88600","#FF9B00"]
   const minMax_intervalle = [[customParams.min,customParams.max],[0,24],[0,6]]
 
@@ -123,20 +124,20 @@ function StatCard () {
   const [timeIndx, settimeIndx] = useState(1)
   const [activeGraphType, setActiveGraphType] = useState([1,2,3])
   const handleChange = (val) => setActiveGraphType(val);
-  const [customParams, setCustomParams] = useState({min:0,max:10});
+  const [customParams, setCustomParams] = useState({min:0,max:300});
 
   console.log(timeIndx)
   console.log(activeGraphType)
 
   useEffect(() => {
     var min = 0
-    var max = 10
+    var max = 300
     const interval = setInterval(() => {
       min += 2
       max += 2
       setCustomParams ({min,max})
       console.log({min,max})
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
