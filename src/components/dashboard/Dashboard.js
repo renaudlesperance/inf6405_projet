@@ -86,36 +86,33 @@ const DrawLine = ({timestep,data_x,data_y,d_min,d_max,title,color,y_label}) => {
   )
 }
 
-const SelectedTimeDrawLine = ({value_type,timeInterval,customParams}) => {
-  const hours = Data.days
-  const secs = Data.hours
-  const days = Data.secs
+const SelectedTimeDrawLine = ({value_type,timeIndx,customParams}) => {
+  const time = Data.days
   const dataT = Data.temp_values;
   const dataH = Data.hum_values;
   const dataW = Data.water_values;
   const dataPH = Data.pH_values;
   const dataCO2 = Data.CO2_values;
   const dataSun = Data.Sun_values;
-
-  const times = [hours,days,secs]
   const allData = [dataT,dataH,dataW,dataPH,dataCO2,dataSun]
-  const allDataNameAndLabel = [["Temperature","C"],["Humidité","g.m^3"],["Consomation d'Eau","L"],["pH de l'Eau","pH"],["Concentration CO2","ppm"],["Insolation","Wm^2"]]
+
+  const allDataNameAndLabel = [["Temperature","C"],["Humidité relative","%"],["Consomation d'Eau","L"],["pH de l'Eau","pH"],["Concentration CO2","ppm"],["Insolation","Wm^2"]]
   const colors = ["#ef4423","#628b3c","#010585","#ee44cc","#b88600","#FF9B00"]
-  const minMax_intervalle = [[customParams.min,customParams.max],[0,24],[0,7]]
+  const minMax_intervalle = [[customParams.min,customParams.max],[0,24],[0,6]]
 
   return (
-    <DrawLine timestep = {timeInterval} data_x = {times[timeInterval-1]} data_y = {allData[value_type]} 
-      d_min = {minMax_intervalle[timeInterval-1][0]} d_max = {minMax_intervalle[timeInterval-1][1]}
+    <DrawLine timestep = {timeIndx} data_x = {Data.times[timeIndx-1]} data_y = {allData[value_type][timeIndx-1]} 
+      d_min = {minMax_intervalle[timeIndx-1][0]} d_max = {minMax_intervalle[timeIndx-1][1]}
       title = {allDataNameAndLabel[value_type][0]} y_label = {allDataNameAndLabel[value_type][1]} color={colors[value_type]}/>
       )
 }
 
-const ActiveStatDraw = ({activeGraphType,timeInterval,customParams}) => {
+const ActiveStatDraw = ({activeGraphType,timeIndx,customParams}) => {
   const toDisplay = [];
   for (const activeGraph of activeGraphType) {
     toDisplay.push(
       <Col>
-        <SelectedTimeDrawLine value_type = {activeGraph-1} timeInterval = {timeInterval} customParams = {customParams}/>
+        <SelectedTimeDrawLine value_type = {activeGraph-1} timeIndx = {timeIndx} customParams = {customParams}/>
       </Col>
       );
   }
@@ -123,12 +120,12 @@ const ActiveStatDraw = ({activeGraphType,timeInterval,customParams}) => {
 }
 
 function StatCard () {
-  const [timeInterval, setTimeInterval] = useState(1)
+  const [timeIndx, settimeIndx] = useState(1)
   const [activeGraphType, setActiveGraphType] = useState([1,2,3])
   const handleChange = (val) => setActiveGraphType(val);
   const [customParams, setCustomParams] = useState({min:0,max:10});
 
-  console.log(timeInterval)
+  console.log(timeIndx)
   console.log(activeGraphType)
 
   useEffect(() => {
@@ -157,14 +154,14 @@ function StatCard () {
             <ToggleButton id="tbg-btn-6" variant="outline-secondary" value={6}> Insolation </ToggleButton>
           </ToggleButtonGroup>
           <ButtonGroup id={styles.buttonGroupDashboard}>
-            <Button variant="outline-secondary" onClick={() => setTimeInterval(1)} timeInterval={timeInterval === 1} active={timeInterval===1}>Temps réel</Button>
-            <Button variant="outline-secondary" onClick={() => setTimeInterval(2)} timeInterval={timeInterval === 2} active={timeInterval===2}>Jour</Button>
-            <Button variant="outline-secondary" onClick={() => setTimeInterval(3)} timeInterval={timeInterval === 3} active={timeInterval===3}>Semaine</Button>
+            <Button variant="outline-secondary" onClick={() => settimeIndx(1)} timeIndx={timeIndx === 1} active={timeIndx===1}>Temps réel</Button>
+            <Button variant="outline-secondary" onClick={() => settimeIndx(2)} timeIndx={timeIndx === 2} active={timeIndx===2}>Jour</Button>
+            <Button variant="outline-secondary" onClick={() => settimeIndx(3)} timeIndx={timeIndx === 3} active={timeIndx===3}>Semaine</Button>
           </ButtonGroup>
         </div>
       </Card.Header>
       <Card.Body>
-          <ActiveStatDraw activeGraphType = {activeGraphType} timeInterval = {timeInterval} customParams = {customParams}/>
+          <ActiveStatDraw activeGraphType = {activeGraphType} timeIndx = {timeIndx} customParams = {customParams}/>
       </Card.Body>
     </Card>
   );
