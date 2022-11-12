@@ -21,21 +21,21 @@ function Cameras() {
   const handleToggle = val => setActiveButtons(val)
 
   const [data, setData] = useState([
-    { name: "Entrée 1"},
-    { name: "Entrée 2"},
-    { name: "Entrée 3"},
-    { name: "Entrée 4"},
-    { name: "Entrée 5"},
-    { name: "Allée 1"},
-    { name: "Allée 2"},
-    { name: "Allée 3"},
-    { name: "Allée 4"},
-    { name: "Allée 5"},
-    { name: "Sortie 1"},
-    { name: "Sortie 2"},
-    { name: "Sortie 3"},
-    { name: "Sortie 4"},
-    { name: "Sortie 5"},
+    { id:0, name: "Entrée 1"},
+    { id:1, name: "Entrée 2"},
+    { id:2, name: "Entrée 3"},
+    { id:1, name: "Entrée 4"},
+    { id:1, name: "Entrée 5"},
+    { id:1, name: "Allée 1"},
+    { id:1, name: "Allée 2"},
+    { id:1, name: "Allée 3"},
+    { id:1, name: "Allée 4"},
+    { id:1, name: "Allée 5"},
+    { id:1, name: "Sortie 1"},
+    { id:1, name: "Sortie 2"},
+    { id:1, name: "Sortie 3"},
+    { id:1, name: "Sortie 4"},
+    { id:1, name: "Sortie 5"},
   ])
 
   const onDelete = () => {
@@ -56,9 +56,12 @@ function Cameras() {
 
   const clickOnList = (camera) => {
     setSelectedCamera(camera)
+    console.log(camera)
     setActiveButtons([1])
   }
 
+  const normalImgID= ["1Z1Bmj6aOsd6h9O2GDpsn4NWbwldE8uuK","1nDltrbaZDElaB7vRrsETNayT1WBH9c96","1Xx2FUt4d24MWuDrSsAUkhbOVHjrweoC9",""]
+  const infraRImgID= ["1plDlllUqbt8rh-lwbTq49pQ09DtN5oyD","16-WHjMW4pJOD69W6QKNxbRR87x-SzlQG","1FbHck8bMAX0b_U_2Bhc9bk7FliM3mabr",""]
   return (
     <div>
       <BackButton onClick={() => navigate(`/Dashboard/${id}`)} />
@@ -81,14 +84,20 @@ function Cameras() {
                   <FontAwesomeIcon icon={faTrashCan} onClick={() => setModalShow(true)} className={styles.icon} />
                 </div>
                 <Row>
-                  {activeButtons.includes(1) && (
+                  {activeButtons.includes(1) && !activeButtons.includes(2) &&(
                     <Col className={styles.cameraInfoCol}>
-                      Hello
+                      <img src={"https://drive.google.com/uc?export=view&id="+normalImgID[selectedCamera.id]} className={styles.photo100}/>
                     </Col>
                   )}
-                  {activeButtons.includes(2) && (
+                  {activeButtons.includes(2) && !activeButtons.includes(1) && (
                     <Col className={styles.cameraInfoCol}>
-                      Hello
+                      <img src={"https://drive.google.com/uc?export=view&id="+infraRImgID[selectedCamera.id]} className={styles.photo100}/>
+                    </Col>
+                  )}
+                  {activeButtons.includes(1) && activeButtons.includes(2) && (
+                    <Col className={styles.cameraInfoCol}>
+                      <img src={"https://drive.google.com/uc?export=view&id="+normalImgID[selectedCamera.id]} className={styles.photo50}/>
+                      <img src={"https://drive.google.com/uc?export=view&id="+infraRImgID[selectedCamera.id]} className={styles.photo50}/>
                     </Col>
                   )}
                   {!activeButtons.includes(1) && !activeButtons.includes(2) && (
