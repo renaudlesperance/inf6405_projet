@@ -122,7 +122,7 @@ const ActiveStatDraw = ({activeGraphType,timeIndx,customParams}) => {
 
 function StatCard () {
   const [timeIndx, settimeIndx] = useState(1)
-  const [activeGraphType, setActiveGraphType] = useState([1,2,3])
+  const [activeGraphType, setActiveGraphType] = useState([1,2,6,3,4,5])
   const handleChange = (val) => setActiveGraphType(val);
   const [customParams, setCustomParams] = useState({min:0,max:300});
 
