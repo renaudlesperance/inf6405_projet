@@ -1,0 +1,24 @@
+.title {
+    text-align: center;
+  }
+  
+  .title h1 {
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  
+  .headerCardDashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .topoContainer {
+    /* border: 2px solid black; */
+    border-radius: 0.375rem;
+    width: 100vh;
+  }
+
+.photo95 {
+    width: 95vh
+  }
