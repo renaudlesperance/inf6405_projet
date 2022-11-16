@@ -66,3 +66,7 @@
 .info p:first-child {
   margin-right: 32px;
 }
+
+.modeleInfo {
+  margin-right: 8px;
+}

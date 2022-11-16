@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './CustomListGroup.module.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
-import { faSquarePlus, faSun, faDroplet, faTemperature4, faCloud } from '@fortawesome/free-solid-svg-icons'
+import { faSquarePlus, faSun, faDroplet, faTemperature4, faCloud, faVideo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,8 @@ export default function CustomListGroup({ data, onAdd, onClick, selectedItem, ti
     "Luminosité": faSun,
     "Humidité": faTemperature4,
     "pH": faDroplet,
-    "CO2": faCloud
+    "CO2": faCloud,
+    "caméra": faVideo
   }
   const [entries, setEntries] = useState(data);
 

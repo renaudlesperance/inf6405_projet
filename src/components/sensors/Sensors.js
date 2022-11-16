@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import styles from './Sensors.module.css';
 import {useNavigate,useParams} from 'react-router-dom'
 import BackButton from '../backButton/BackButton';

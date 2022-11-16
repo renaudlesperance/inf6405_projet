@@ -3,12 +3,13 @@ import styles from './Cameras.module.css'
 import BackButton from '../backButton/BackButton';
 import CustomContainer from '../customContainer/CustomContainer';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Tooltip } from 'react-bootstrap';
 import ListGroup from '../listGroup/CustomListGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import MyVerticallyCenteredModal from '../modal/Modal';
 import { Form, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 function Cameras() {
   const { id } = useParams()
@@ -16,33 +17,34 @@ function Cameras() {
   const [selectedCamera, setSelectedCamera] = useState({})
   const [modalShow, setModalShow] = useState(false)
   const [AddModalShow, setAddModalShow] = useState(false)
-  const [addData, setAddData] = useState({ id: 1 })
+  const [addData, setAddData] = useState({ id: 1, type: 'caméra' })
   const [activeButtons, setActiveButtons] = useState([1])
   const handleToggle = val => setActiveButtons(val)
 
   const [data, setData] = useState([
-    { id:1, name: "Entrée 1", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Entrée 2", modele: "BX2567", resolution: "1080p"},
-    { id:2, name: "Entrée 3", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Entrée 4", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Entrée 5", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Allée 1", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Allée 2", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Allée 3", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Allée 4", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Allée 5", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Sortie 1", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Sortie 2", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Sortie 3", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Sortie 4", modele: "BX2567", resolution: "1080p"},
-    { id:1, name: "Sortie 5", modele: "BX2567", resolution: "1080p"},
+    { id:1, type: "caméra", name: "Entrée 1", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Entrée 2", modele: "BX2567"},
+    { id:2, type: "caméra", name: "Entrée 3", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Entrée 4", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Entrée 5", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Allée 1", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Allée 2", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Allée 3", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Allée 4", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Allée 5", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Sortie 1", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Sortie 2", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Sortie 3", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Sortie 4", modele: "BX2567"},
+    { id:1, type: "caméra",name: "Sortie 5", modele: "BX2567"},
   ])
 
   const modeles = [
-    { value: "BX3000", resolution: "2160p" },
-    { value: "BX2567", resolution: "1080p" },
-    { value: "BX2512", resolution: "720p" },
-    { value: "BX23", resolution: "480p" },
+    { value: "BX3000", resolution: "2160p", ref: "" },
+    { value: "BX2567", resolution: "1080p", ref: "https://google.com" },
+    { value: "BX2512", resolution: "720p", ref: "" },
+    { value: "BX23", resolution: "480p", ref: "" },
+    { value: "BX23", resolution: "480p", ref: "" },
   ]
 
   const onDelete = () => {
@@ -52,8 +54,9 @@ function Cameras() {
   }
 
   const onAdd = () => {
-    setData([...data, addData])
-    setAddData({ id: 1 })
+    setData([addData, ...data])
+    setSelectedCamera(addData)
+    setAddData({ id: 1, type: 'caméra' })
     setAddModalShow(false)
   }
 
@@ -90,7 +93,17 @@ function Cameras() {
                   <FontAwesomeIcon icon={faTrashCan} onClick={() => setModalShow(true)} className={styles.icon} />
                 </div>
                 <div className={styles.info}>
-                  <p><b>Modèle : </b>{selectedCamera.modele}</p>
+                  <p>
+                    <span className={styles.modeleInfo}><b>Modèle : </b>{selectedCamera.modele}</span>
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={<Tooltip id="button-tooltip-2">En cliquant ici, vous accéderez sur le site du constructeur.</Tooltip>}
+                    >
+                      <a href={modeles.filter(elt => elt.value === selectedCamera.modele)[0].ref} target='_blank' rel="noreferrer">
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                      </a>
+                    </OverlayTrigger>
+                  </p>
                   <p><b>Résolution : </b>{modeles.filter(elt => elt.value === selectedCamera.modele)[0].resolution}</p>
                 </div>
                 <Row>
@@ -126,6 +139,7 @@ function Cameras() {
               onClick={clickOnList}
               selectedItem={selectedCamera}
               title='Caméras disponibles'
+              withIcons
             />
           </Col>
         </Row>
@@ -158,7 +172,7 @@ function Cameras() {
           <Form.Select aria-label="Default select example" name='modele' onChange={handleChange}>
             <option>Choisissez votre modèle</option>
             {modeles.map(modele => (
-              <option value={modele.value}>{modele.value}</option>
+              <option value={modele.value}>{`${modele.value}  --  ${modele.resolution}`}</option>
             ))}
           </Form.Select>
         </Form.Group>
