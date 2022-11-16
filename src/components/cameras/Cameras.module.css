@@ -43,14 +43,30 @@
 
 .cameraInfoCol {
   background-color: white;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .photo50 {
-  width: 50vh;
+  width: 55vh;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
 }
 .photo100 {
   width: 100vh;
-  align-items: center;  
+  align-items: center;
+}
+
+.info {
+  display: flex;
+}
+
+.info p:first-child {
+  margin-right: 32px;
+}
+
+.modeleInfo {
+  margin-right: 8px;
 }
