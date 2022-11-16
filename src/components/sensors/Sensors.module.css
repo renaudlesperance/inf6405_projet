@@ -10,6 +10,7 @@
 .sensorContainer {
   border: 2px solid black;
   border-radius: 0.375rem;
+  background-color: white;
 }
 
 .sensorNotSelected {
@@ -19,7 +20,7 @@
   height: 80vh;
 }
 
-.cameraNotSelected > p {
+.sensorNotSelected > p {
   font-size: 36px;
 }
 
@@ -42,4 +43,25 @@
 
 .sensorInfoCol {
   background-color: white;
+}
+
+.flex {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.typeSensor p {
+  margin-right: 32px;
+}
+
+.iconAndLabel {
+  margin-right: 24px;
+}
+
+.iconAndLabel span {
+  margin-left: 8px;
+}
+
+.modeleInfo {
+  margin-right: 8px;
 }
