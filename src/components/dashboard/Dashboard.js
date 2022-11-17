@@ -1,6 +1,8 @@
 import {useNavigate,useParams} from 'react-router-dom'
 import {Card, Row, Col, ButtonGroup, Button ,ToggleButtonGroup,ToggleButton} from 'react-bootstrap'
 import Data from "../../data/data.json";
+import { faTemperatureHigh, faVideo } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import React, { useState,useEffect } from 'react';
 import {
@@ -18,7 +20,6 @@ import styles from './Dashboard.module.css';
 import BackButton from '../backButton/BackButton';
 import ClickableContainer from '../clickableContainer/ClickableContainer';
 import CustomContainer from '../customContainer/CustomContainer';
-var testcount = 1
 
 ChartJS.register(
   CategoryScale,
@@ -102,7 +103,7 @@ const SelectedTimeDrawLine = ({value_type,timeIndx,customParams}) => {
   const minMax_intervalle = [[customParams.min,customParams.max],[0,24],[0,6]]
 
   return (
-    <DrawLine timestep = {timeIndx} data_x = {Data.times[timeIndx-1]} data_y = {allData[value_type][timeIndx-1]} 
+    <DrawLine timestep = {timeIndx} data_x = {Data.times[timeIndx-1]} data_y = {allData[value_type][timeIndx-1]}
       d_min = {minMax_intervalle[timeIndx-1][0]} d_max = {minMax_intervalle[timeIndx-1][1]}
       title = {allDataNameAndLabel[value_type][0]} y_label = {allDataNameAndLabel[value_type][1]} color={colors[value_type]}/>
       )
@@ -171,9 +172,12 @@ function StatCard () {
 function CamerasCard () {
   return (
     <Card>
-      <Card.Header as="h5">Caméras</Card.Header>
+      <Card.Header as="h5" className={styles.colContainer}>
+        <span>Caméras</span>
+        <FontAwesomeIcon icon={faVideo} />
+      </Card.Header>
       <Card.Body>
-        contenus
+        Cliquez ici pour visualiser vos caméras.
       </Card.Body>
     </Card>
   );
@@ -182,9 +186,12 @@ function CamerasCard () {
 function SensorsCard () {
   return (
     <Card>
-      <Card.Header as="h5">Capteurs</Card.Header>
+      <Card.Header as="h5" className={styles.colContainer}>
+        <span>Capteurs</span>
+        <FontAwesomeIcon icon={faTemperatureHigh} />
+      </Card.Header>
       <Card.Body>
-        contenus
+        Cliquez ici pour visualiser vos capteurs.
       </Card.Body>
     </Card>
   );
@@ -193,9 +200,12 @@ function SensorsCard () {
 function TopologyCard () {
   return (
     <Card>
-      <Card.Header as="h5">Topologie</Card.Header>
+      <Card.Header as="h5" className={styles.colContainer}>
+        <span>Topologie</span>
+        <FontAwesomeIcon icon={faVideo} />
+      </Card.Header>
       <Card.Body>
-        contenus
+        Cliquez ici pour visualiser la topologie.
       </Card.Body>
     </Card>
   );
@@ -218,17 +228,17 @@ function Dashboard() {
           </Row>
         </div>
         <Row>
-          <Col>
+          <Col className={styles.marginBottom}>
             <ClickableContainer onClick={() => navigate(`/Cameras/${id}`)}>
               <CamerasCard/>
             </ClickableContainer>
            </Col>
-          <Col>
+          <Col className={styles.marginBottom}>
             <ClickableContainer onClick={() => navigate(`/Sensors/${id}`)}>
               <SensorsCard/>
             </ClickableContainer>
           </Col>
-          <Col>
+          <Col className={styles.marginBottom}>
             <ClickableContainer onClick={() => navigate(`/Topology/${id}`)}>
               <TopologyCard/>
             </ClickableContainer>

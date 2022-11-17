@@ -16,3 +16,11 @@
   align-items: center;
 }
 
+.marginBottom {
+  margin-bottom: 32px;
+}
+
+.colContainer {
+  display: flex;
+  justify-content: space-between;
+}

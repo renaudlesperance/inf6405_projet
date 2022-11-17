@@ -120,6 +120,21 @@ function Sensors() {
                   <IconAndLabel icon={faLaptopCode} value={selectedSensor.mac} />
                   <IconAndLabel icon={faWaveSquare} value={modelesWithRef.filter(elt => elt.modele === selectedSensor.modele)[0].freq} />
                 </div>
+                <div>
+                  {selectedSensor.type === 'Humidité' && (
+                    <p>METTRE GRAPH humidité</p>
+                  )}
+                  {selectedSensor.type === 'Luminosité' && (
+                    <p>METTRE GRAPH Luminosité</p>
+                  )}
+                  {selectedSensor.type === 'pH' && (
+                    <p>METTRE GRAPH pH</p>
+                  )}
+                  {selectedSensor.type === 'CO2' && (
+                    <p>METTRE GRAPH CO2</p>
+                  )}
+                  {/* TODO : METTRE LE GRAPH AVEC TEMPS DE VIE JUSTE A COTE */}
+                </div>
               </div>
             )}
           </Col>
