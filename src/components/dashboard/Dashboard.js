@@ -96,10 +96,13 @@ const SelectedTimeDrawLine = ({value_type,timeIndx,customParams}) => {
   const dataPH = Data.pH_values;
   const dataCO2 = Data.CO2_values;
   const dataSun = Data.Sun_values;
-  const allData = [dataT,dataH,dataW,dataPH,dataCO2,dataSun]
+  const dataPower1 = Data.power1;
+  const dataPower2 = Data.power2;
+  const dataPower3 = Data.power3;
+  const allData = [dataT,dataH,dataW,dataPH,dataCO2,dataSun,dataPower1,dataPower2,dataPower3]
 
-  const allDataNameAndLabel = [["Temperature","C"],["Humidité relative","%"],["Consomation d'Eau (cumulative)","L"],["pH de l'Eau","pH"],["Concentration CO2","ppm"],["Insolation","Wm^2"]]
-  const colors = ["#ef4423","#628b3c","#010585","#ee44cc","#b88600","#FF9B00"]
+  const allDataNameAndLabel = [["Temperature","C"],["Humidité relative","%"],["Consomation d'Eau (cumulative)","L"],["pH de l'Eau","pH"],["Concentration CO2","ppm"],["Insolation","Wm^2"],["Charge restante","%"],["Charge restante","%"],["Charge restante","%"]]
+  const colors = ["#ef4423","#628b3c","#010585","#ee44cc","#b88600","#FF9B00","#000000","#000000","#000000"]
   const minMax_intervalle = [[customParams.min,customParams.max],[0,24],[0,6]]
 
   return (
@@ -249,4 +252,5 @@ function Dashboard() {
   );
 }
 
+export {ActiveStatDraw}; //for sensors page
 export default Dashboard;

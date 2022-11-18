@@ -9,6 +9,7 @@ import { faInfoCircle, faLaptopCode, faTrashCan, faWaveSquare, faWifi } from '@f
 import ListGroup from '../listGroup/CustomListGroup';
 import MyVerticallyCenteredModal from '../modal/Modal';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import {ActiveStatDraw} from '../dashboard/Dashboard';
 
 const IconAndLabel = ({ icon, value }) => (
   <div className={styles.iconAndLabel}>
@@ -25,9 +26,9 @@ function Sensors() {
   const [AddModalShow, setAddModalShow] = useState(false)
   const [addData, setAddData] = useState({})
   const [data, setData] = useState([
-    { name: "Entrée 1", type: "Humidité", ip: "192.168.1.1", mac: "00:37:6C:E2:EB:62", modele: "SCC30-DB"},
-    { name: "Entrée 2", type: "Humidité", ip: "192.168.1.2", mac: "00:37:6C:E2:EB:63", modele: "SEN-18364"},
-    { name: "Entrée 3", type: "Humidité", ip: "192.168.1.3", mac: "00:37:6C:E2:EB:64", modele: "A1DU5P2CP006B"},
+    { name: "Entrée 1", type: "Humidité et temperature", ip: "192.168.1.1", mac: "00:37:6C:E2:EB:62", modele: "SCC30-DB"},
+    { name: "Entrée 2", type: "Humidité et temperature", ip: "192.168.1.2", mac: "00:37:6C:E2:EB:63", modele: "SEN-18364"},
+    { name: "Entrée 3", type: "Humidité et temperature", ip: "192.168.1.3", mac: "00:37:6C:E2:EB:64", modele: "A1DU5P2CP006B"},
     { name: "Entrée 4", type: "CO2", ip: "192.168.1.4", mac: "00:37:6C:E2:EB:65", modele: "T6793"},
     { name: "Entrée 5", type: "CO2", ip: "192.168.1.5", mac: "00:37:6C:E2:EB:66", modele: "COZIR-LP-5000"},
     { name: "Allée 1", type: "CO2", ip: "192.168.1.6", mac: "00:37:6C:E2:EB:67", modele: "T3022-1-5K-5-1"},
@@ -42,9 +43,9 @@ function Sensors() {
     { name: "Sortie 5", type: "Luminosité", ip: "192.168.1.15", mac: "00:37:6C:E2:EB:76", modele: "SL2561"},
   ])
 
-  const types = ["Humidité", "Luminosité", "pH", "CO2"]
+  const types = ["Humidité et temperature", "Luminosité", "pH", "CO2"]
   const modeles = [
-    { type: "Humidité", modeles: ["SCC30-DB", "SEN-18364", "A1DU5P2CP006B"]},
+    { type: "Humidité et temperature", modeles: ["SCC30-DB", "SEN-18364", "A1DU5P2CP006B"]},
     { type: "Luminosité", modeles: ["TSL2561", "LM393-1", "VEML7700"]},
     { type: "pH", modeles: ["PH8EFP", "100 GP-D", "YSI 1001"]},
     { type: "CO2", modeles: ["T6793", "COZIR-LP-5000","T3022-1-5K-5-1"]},
@@ -63,6 +64,7 @@ function Sensors() {
     { modele: "TSL2561", ref: "https://learn.adafruit.com/tsl2561", freq: "6x par minute" },
     { modele: "VEML7700", ref: "https://store.rakwireless.com/products/wisblock-ambient-light-sensor-rak12010", freq: "6x par minute" },
     { modele: "LM393-1", ref: "https://grabcad.com/library/light-sensor-lm393-1", freq: "6x par minute" },
+    {modele: "SL2561", ref:  "https://www.renkeer.com/product/pyranometer/", freq: "2x par minute"}
   ]
 
   const onDelete = () => {
@@ -121,17 +123,39 @@ function Sensors() {
                   <IconAndLabel icon={faWaveSquare} value={modelesWithRef.filter(elt => elt.modele === selectedSensor.modele)[0].freq} />
                 </div>
                 <div>
-                  {selectedSensor.type === 'Humidité' && (
-                    <p>METTRE GRAPH humidité</p>
+                  {selectedSensor.type === 'Humidité et temperature' && (
+                    <CustomContainer>
+                      <Row>
+                        <Col><ActiveStatDraw activeGraphType = {[2]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                        <Col><ActiveStatDraw activeGraphType = {[1]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                      </Row>
+                      <Col><ActiveStatDraw activeGraphType = {[8]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                    </CustomContainer>
                   )}
                   {selectedSensor.type === 'Luminosité' && (
-                    <p>METTRE GRAPH Luminosité</p>
+                    <CustomContainer>
+                      <Row>
+                        <Col><ActiveStatDraw activeGraphType = {[6]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                        <Col><ActiveStatDraw activeGraphType = {[8]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                      </Row>
+                    </CustomContainer>
                   )}
                   {selectedSensor.type === 'pH' && (
-                    <p>METTRE GRAPH pH</p>
+                    <CustomContainer>
+                    <Row>
+                      <Col><ActiveStatDraw activeGraphType = {[4]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                      <Col><ActiveStatDraw activeGraphType = {[3]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                    </Row>
+                    <Col><ActiveStatDraw activeGraphType = {[7]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                   </CustomContainer>
                   )}
                   {selectedSensor.type === 'CO2' && (
-                    <p>METTRE GRAPH CO2</p>
+                    <CustomContainer>
+                    <Row>
+                      <Col><ActiveStatDraw activeGraphType = {[5]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                      <Col><ActiveStatDraw activeGraphType = {[9]} timeIndx = {2} customParams = {{min:0,max:300}}/></Col>
+                    </Row>
+                   </CustomContainer>
                   )}
                   {/* TODO : METTRE LE GRAPH AVEC TEMPS DE VIE JUSTE A COTE */}
                 </div>

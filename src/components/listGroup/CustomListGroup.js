@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 export default function CustomListGroup({ data, onAdd, onClick, selectedItem, title, withIcons }) {
   const icons = {
     "Luminosité": faSun,
-    "Humidité": faTemperature4,
+    "Humidité et temperature": faTemperature4,
     "pH": faDroplet,
     "CO2": faCloud,
     "caméra": faVideo
