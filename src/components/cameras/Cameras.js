@@ -22,29 +22,29 @@ function Cameras() {
   const handleToggle = val => setActiveButtons(val)
 
   const [data, setData] = useState([
-    { id:1, type: "caméra", name: "Entrée 1", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Entrée 2", modele: "BX2567"},
-    { id:2, type: "caméra", name: "Entrée 3", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Entrée 4", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Entrée 5", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Allée 1", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Allée 2", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Allée 3", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Allée 4", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Allée 5", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Sortie 1", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Sortie 2", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Sortie 3", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Sortie 4", modele: "BX2567"},
-    { id:1, type: "caméra",name: "Sortie 5", modele: "BX2567"},
+    { id:1, type: "caméra", name: "Entrée 1", modele_classique: "RPI Camera V2", modele_ndvi: 'RPI Camera NoIR V2'},
+    { id:1, type: "caméra",name: "Entrée 2", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
+    { id:2, type: "caméra", name: "Entrée 3", modele_classique: "RPI Camera V2", modele_ndvi: 'Camera Survey3'},
+    { id:1, type: "caméra",name: "Entrée 4", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'RPI Camera NoIR V2'},
+    { id:1, type: "caméra",name: "Entrée 5", modele_classique: "RPI Camera V2", modele_ndvi: 'AgroCam GEO NDVI'},
+    { id:1, type: "caméra",name: "Allée 1", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
+    { id:1, type: "caméra",name: "Allée 2", modele_classique: "RPI Camera V2", modele_ndvi: 'RPI Camera NoIR V2'},
+    { id:1, type: "caméra",name: "Allée 3", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
+    { id:1, type: "caméra",name: "Allée 4", modele_classique: "RPI Camera V2", modele_ndvi: 'AgroCam GEO NDVI'},
+    { id:1, type: "caméra",name: "Allée 5", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'RPI Camera NoIR V2'},
+    { id:1, type: "caméra",name: "Sortie 1", modele_classique: "RPI Camera V2", modele_ndvi: 'RPI Camera NoIR V2'},
+    { id:1, type: "caméra",name: "Sortie 2", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
+    { id:1, type: "caméra",name: "Sortie 3", modele_classique: "RPI Camera V2", modele_ndvi: 'RPI Camera NoIR V2'},
+    { id:1, type: "caméra",name: "Sortie 4", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
+    { id:1, type: "caméra",name: "Sortie 5", modele_classique: "RPI Camera V2", modele_ndvi: 'AgroCam GEO NDVI'},
   ])
 
   const modeles = [
-    { value: "BX3000", resolution: "2160p", ref: "" },
-    { value: "BX2567", resolution: "1080p", ref: "https://google.com" },
-    { value: "BX2512", resolution: "720p", ref: "" },
-    { value: "BX23", resolution: "480p", ref: "" },
-    { value: "BX23", resolution: "480p", ref: "" },
+    { value: "RPI Camera NoIR V2", resolution: "8MP", ref: "https://www.pishop.ca/product/raspberry-pi-noir-camera-module-v2-8mp/", type: 'ndvi' },
+    { value: "RPI Camera V2", resolution: "8MP", ref: "https://www.pishop.ca/product/raspberry-pi-8mp-camera-board-v2/", type: 'classique' },
+    { value: "Raspberry Pi HQ Camera", resolution: "12.3MP", ref: "https://www.pishop.ca/product/raspberry-pi-hq-camera/?src=raspberrypi", type: 'classique'  },
+    { value: "Camera Survey3", resolution: "12MP", ref: "https://www.mapir.camera/pages/cameras", type: 'ndvi' },
+    { value: "AgroCam GEO NDVI", resolution: "12MP", ref: "https://www.agrocam.eu/products", type: 'ndvi' },
   ]
 
   const onDelete = () => {
@@ -94,17 +94,31 @@ function Cameras() {
                 </div>
                 <div className={styles.info}>
                   <p>
-                    <span className={styles.modeleInfo}><b>Modèle : </b>{selectedCamera.modele}</span>
+                    <span className={styles.modeleInfo}><b>Caméra classique : </b>{selectedCamera.modele_classique}</span>
                     <OverlayTrigger
                       placement="bottom"
                       overlay={<Tooltip id="button-tooltip-2">En cliquant ici, vous accéderez sur le site du constructeur.</Tooltip>}
                     >
-                      <a href={modeles.filter(elt => elt.value === selectedCamera.modele)[0].ref} target='_blank' rel="noreferrer">
+                      <a href={modeles.filter(elt => elt.value === selectedCamera.modele_classique)[0].ref} target='_blank' rel="noreferrer">
                         <FontAwesomeIcon icon={faInfoCircle} />
                       </a>
                     </OverlayTrigger>
                   </p>
-                  <p><b>Résolution : </b>{modeles.filter(elt => elt.value === selectedCamera.modele)[0].resolution}</p>
+                  <p><b>Résolution : </b>{modeles.filter(elt => elt.value === selectedCamera.modele_classique)[0].resolution}</p>
+                </div>
+                <div className={styles.info}>
+                  <p>
+                    <span className={styles.modeleInfo}><b>Caméra NDVI : </b>{selectedCamera.modele_ndvi}</span>
+                    <OverlayTrigger
+                      placement="bottom"
+                      overlay={<Tooltip id="button-tooltip-2">En cliquant ici, vous accéderez sur le site du constructeur.</Tooltip>}
+                    >
+                      <a href={modeles.filter(elt => elt.value === selectedCamera.modele_ndvi)[0].ref} target='_blank' rel="noreferrer">
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                      </a>
+                    </OverlayTrigger>
+                  </p>
+                  <p><b>Résolution : </b>{modeles.filter(elt => elt.value === selectedCamera.modele_ndvi)[0].resolution}</p>
                 </div>
                 <Row>
                   {activeButtons.includes(1) && !activeButtons.includes(2) &&(
@@ -168,10 +182,19 @@ function Cameras() {
           </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Modèle de la caméra</Form.Label>
-          <Form.Select aria-label="Default select example" name='modele' onChange={handleChange}>
+          <Form.Label>Modèle de la caméra classique</Form.Label>
+          <Form.Select aria-label="Default select example" name='modele_classique' onChange={handleChange}>
             <option>Choisissez votre modèle</option>
-            {modeles.map(modele => (
+            {modeles.filter(elt => elt.type === 'classique').map(modele => (
+              <option value={modele.value}>{`${modele.value}  --  ${modele.resolution}`}</option>
+            ))}
+          </Form.Select>
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Modèle de la caméra NDVI</Form.Label>
+          <Form.Select aria-label="Default select example" name='modele_ndvi' onChange={handleChange}>
+            <option>Choisissez votre modèle</option>
+            {modeles.filter(elt => elt.type === 'ndvi').map(modele => (
               <option value={modele.value}>{`${modele.value}  --  ${modele.resolution}`}</option>
             ))}
           </Form.Select>

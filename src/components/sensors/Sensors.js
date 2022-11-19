@@ -157,7 +157,6 @@ function Sensors() {
                     </Row>
                    </CustomContainer>
                   )}
-                  {/* TODO : METTRE LE GRAPH AVEC TEMPS DE VIE JUSTE A COTE */}
                 </div>
               </div>
             )}
