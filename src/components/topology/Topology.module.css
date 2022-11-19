@@ -1,12 +1,12 @@
 .title {
     text-align: center;
   }
-  
+
   .title h1 {
     font-weight: 700;
     margin-bottom: 24px;
   }
-  
+
   .headerCardDashboard {
     display: flex;
     justify-content: space-between;
@@ -14,9 +14,11 @@
   }
 
   .topoContainer {
-    /* border: 2px solid black; */
     border-radius: 0.375rem;
-    width: 100vh;
+  }
+
+  .align {
+    text-align: center;
   }
 
 .photo95 {
