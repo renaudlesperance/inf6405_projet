@@ -17,7 +17,7 @@ const NoMatch = () => {return <div>Page not found</div>;};
 function App() {
   return (
     <div className="App">
-      <Router> <Routes>
+      <Router basename="/inf6405_projet"> <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/GreenHouseMap" element={<GreenHouseMap />} />
         <Route path="/Dashboard/:id" element={<Dashboard />}/>
