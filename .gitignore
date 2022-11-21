@@ -24,3 +24,4 @@ yarn-error.log*
 
 # Jupyter notebook
 .ipynb_checkpoints
+*.zip
