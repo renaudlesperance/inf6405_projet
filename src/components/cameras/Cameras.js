@@ -11,6 +11,13 @@ import MyVerticallyCenteredModal from '../modal/Modal';
 import { Form, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
+import img1 from '../../Images/img1.jpg'
+import img1_IR from '../../Images/img1_IR.jpg'
+import img2 from '../../Images/img2.jpg'
+import img2_IR from '../../Images/img2_IR.jpg'
+import img3 from '../../Images/img3.jpg'
+import img3_IR from '../../Images/img3_IR.jpg'
+
 function Cameras() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -23,12 +30,12 @@ function Cameras() {
 
   const [data, setData] = useState([
     { id:1, type: "caméra", name: "Entrée 1", modele_classique: "RPI Camera V2", modele_ndvi: 'RPI Camera NoIR V2'},
-    { id:1, type: "caméra",name: "Entrée 2", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
-    { id:2, type: "caméra", name: "Entrée 3", modele_classique: "RPI Camera V2", modele_ndvi: 'Camera Survey3'},
-    { id:1, type: "caméra",name: "Entrée 4", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'RPI Camera NoIR V2'},
-    { id:1, type: "caméra",name: "Entrée 5", modele_classique: "RPI Camera V2", modele_ndvi: 'AgroCam GEO NDVI'},
+    { id:2, type: "caméra",name: "Entrée 2", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
+    { id:3, type: "caméra", name: "Entrée 3", modele_classique: "RPI Camera V2", modele_ndvi: 'Camera Survey3'},
+    { id:2, type: "caméra",name: "Entrée 4", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'RPI Camera NoIR V2'},
+    { id:2, type: "caméra",name: "Entrée 5", modele_classique: "RPI Camera V2", modele_ndvi: 'AgroCam GEO NDVI'},
     { id:1, type: "caméra",name: "Allée 1", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
-    { id:1, type: "caméra",name: "Allée 2", modele_classique: "RPI Camera V2", modele_ndvi: 'RPI Camera NoIR V2'},
+    { id:3, type: "caméra",name: "Allée 2", modele_classique: "RPI Camera V2", modele_ndvi: 'RPI Camera NoIR V2'},
     { id:1, type: "caméra",name: "Allée 3", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'Camera Survey3'},
     { id:1, type: "caméra",name: "Allée 4", modele_classique: "RPI Camera V2", modele_ndvi: 'AgroCam GEO NDVI'},
     { id:1, type: "caméra",name: "Allée 5", modele_classique: "Raspberry Pi HQ Camera", modele_ndvi: 'RPI Camera NoIR V2'},
@@ -69,8 +76,15 @@ function Cameras() {
     setActiveButtons([1])
   }
 
-  const normalImgID= ["1Z1Bmj6aOsd6h9O2GDpsn4NWbwldE8uuK","1nDltrbaZDElaB7vRrsETNayT1WBH9c96","1Xx2FUt4d24MWuDrSsAUkhbOVHjrweoC9",""]
-  const infraRImgID= ["1plDlllUqbt8rh-lwbTq49pQ09DtN5oyD","16-WHjMW4pJOD69W6QKNxbRR87x-SzlQG","1FbHck8bMAX0b_U_2Bhc9bk7FliM3mabr",""]
+  // for Image from Google Drive
+  // const normalImgID= ["1Z1Bmj6aOsd6h9O2GDpsn4NWbwldE8uuK","1nDltrbaZDElaB7vRrsETNayT1WBH9c96","1Xx2FUt4d24MWuDrSsAUkhbOVHjrweoC9",""]
+  // const infraRImgID= ["1plDlllUqbt8rh-lwbTq49pQ09DtN5oyD","16-WHjMW4pJOD69W6QKNxbRR87x-SzlQG","1FbHck8bMAX0b_U_2Bhc9bk7FliM3mabr",""]
+
+  // for local images
+  const normalImgID= [img1,img2,img3]
+  const infraRImgID= [img1_IR,img2_IR,img3_IR]
+
+
   return (
     <div>
       <BackButton onClick={() => navigate(`/Dashboard/${id}`)} />
@@ -123,18 +137,22 @@ function Cameras() {
                 <Row>
                   {activeButtons.includes(1) && !activeButtons.includes(2) &&(
                     <Col className={styles.cameraInfoCol}>
-                      <img src={"https://drive.google.com/uc?export=view&id="+normalImgID[selectedCamera.id]} className={styles.photo100}/>
+                      {/* <img src={"https://drive.google.com/uc?export=view&id="+normalImgID[selectedCamera.id-1]} className={styles.photo100}/> */}
+                      <img src={normalImgID[selectedCamera.id-1]} className={styles.photo100}/>
                     </Col>
                   )}
                   {activeButtons.includes(2) && !activeButtons.includes(1) && (
                     <Col className={styles.cameraInfoCol}>
-                      <img src={"https://drive.google.com/uc?export=view&id="+infraRImgID[selectedCamera.id]} className={styles.photo100}/>
+                      {/* <img src={"https://drive.google.com/uc?export=view&id="+infraRImgID[selectedCamera.id-1]} className={styles.photo100}/> */}
+                      <img src={infraRImgID[selectedCamera.id-1]} className={styles.photo100}/>
                     </Col>
                   )}
                   {activeButtons.includes(1) && activeButtons.includes(2) && (
                     <Col className={styles.cameraInfoCol}>
-                      <img src={"https://drive.google.com/uc?export=view&id="+normalImgID[selectedCamera.id]} className={styles.photo50}/>
-                      <img src={"https://drive.google.com/uc?export=view&id="+infraRImgID[selectedCamera.id]} className={styles.photo50}/>
+                      {/* <img src={"https://drive.google.com/uc?export=view&id="+normalImgID[selectedCamera.id-1]} className={styles.photo50}/>
+                      <img src={"https://drive.google.com/uc?export=view&id="+infraRImgID[selectedCamera.id-1]} className={styles.photo50}/> */}
+                      <img src={normalImgID[selectedCamera.id-1]} className={styles.photo50}/>
+                      <img src={infraRImgID[selectedCamera.id-1]} className={styles.photo50}/>
                     </Col>
                   )}
                   {!activeButtons.includes(1) && !activeButtons.includes(2) && (
