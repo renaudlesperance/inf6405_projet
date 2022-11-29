@@ -9,7 +9,8 @@ And a report containing more detail : [rapport_Smart_Greenhouse.pdf](https://git
 
 ## Online
 The application is available online thanks to github pages [Smart Greenhouse](https://renaudlesperance.github.io/inf6405_projet/)
-Use → User : MasterGardener Pwd : GrowGrowGrow!
+
+### Login : User = MasterGardener       Pwd = GrowGrowGrow!
 
 ## Local
 The application can be run locally by cloning the project directory and using `npm start`.
