@@ -12,14 +12,11 @@ The application is available online thanks to github pages [Smart Greenhouse](ht
 Use → User : MasterGardener Pwd : GrowGrowGrow!
 
 ## Local
-The application can be run locally by cloning the project directory and using the following command.
+The application can be run locally by cloning the project directory and using `npm start`.
 
 For the Google map to function, you must add an .env.local file with a valid key. [Google Maps Platform](https://console.cloud.google.com/google/maps-apis/credentials)
 
-Contents of the .env.local file:
-`REACT_APP_GOOGLE_KEY = "key_value"`
-
-### `npm start`
+Contents of the .env.local file : `REACT_APP_GOOGLE_KEY = "key_value"`
 
 # Application pages 
 
